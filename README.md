@@ -3,7 +3,7 @@ A smarter way to ship packages
 
 Here's what I'm thinking for this web app..
 -User visits the site
--Site asks the user where they're shipping from and where they're shipping to (ZIP codes or quick city lookup by using some external API)
+\n-Site asks the user where they're shipping from and where they're shipping to (ZIP codes or quick city lookup by using some external API)
 -Site asks the user when they want their package to arrive, and the tolerable amount of possible delay
 -Some logic will be used here to determine how much more information is needed (for example, USPS First Class doesn't require sharing package dimensions, only the weight)
 -User enters any remaining information as determined by the logic
