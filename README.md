@@ -3,7 +3,7 @@ A smarter way to ship packages
 
 Here's what I'm thinking for this web app..
 
-1.User visits the site
+1. User visits the site
 
 2. Site asks the user where they're shipping from and where they're shipping to (ZIP codes or quick city lookup by using some external API)
 
