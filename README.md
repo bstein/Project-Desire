@@ -1,6 +1,8 @@
 # Project-Desire
 A smarter way to ship packages
 
+Web App is <a href="https://www.baileystein.com/Project-Desire/">here</a>.
+
 Here's what I'm thinking for this web app..
 
 1. User visits the site
@@ -15,11 +17,9 @@ Here's what I'm thinking for this web app..
 
 6. Site offers a suggested shipping method and price, along with one higher-tier and one lower-tier service for flexibility
 
-7. Site helps the user get a shipping label and schedule a pickup if needed
+7. Once an option is selected, the user will purchase the shipping through the selected third party
 
 Some other thoughts..
 1. Since we'll be getting copies of the tracking numbers, we can use them to track delivery times and eventually improve time estimates and recommendations beyond what the shipping carriers are doing
 
-2. It will be difficult to actually create shipments at volume discounts without direct access to special accounts. HTML scraping and hidden execution are probably the best way to get started.
-
-3. Payments for shipping can be collected via a third party processor. A small markup of about 5-10% will be needed to cover processing fees, chargeback disputes, and to maintain the service. It's possible the markup could be reduced if P2P alternatives are used rather than credit cards.
+2. Shipping prices will be significantly less than retail since quotes will be under large business accounts that allow anyone to access.
