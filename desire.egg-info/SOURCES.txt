@@ -1,8 +1,0 @@
-README.md
-setup.py
-desire/__init__.py
-desire.egg-info/PKG-INFO
-desire.egg-info/SOURCES.txt
-desire.egg-info/dependency_links.txt
-desire.egg-info/requires.txt
-desire.egg-info/top_level.txt
