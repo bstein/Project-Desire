@@ -4,5 +4,10 @@ SERVER_PORT = 8000
 # The path to MongoDB databases
 DB_URI = 'mongodb://localhost:27017/data'
 
+# OAuth 2.0 Client Credentials for Google Cloud Identity API
+GOOGLE_CLIENT_ID = ''
+GOOGLE_CLIENT_SECRET = ''
+GOOGLE_CALLBACK = 'http://localhost:8000'
+
 # A test or production API key for accessing the EasyPost API
 EASY_POST_API_KEY = ''

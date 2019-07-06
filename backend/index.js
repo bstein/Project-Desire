@@ -19,6 +19,7 @@ app.use((req, _res, next) => {
 
 // Mount URI routes
 app.use('/api/addresses', routes.addresses);
+app.use('/login', routes.login);
 
 // Connect to database and then start Express.js server
 connectMon().then(() => {
