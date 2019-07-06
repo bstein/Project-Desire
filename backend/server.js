@@ -1,9 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const config = require('./_config');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('some placeholder text :)');
+// Create parsers for interpreting req
+const jsonParser = bodyParser.json();
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.get('/api/addresses', (req, res) => {
+  // Return a list of saved addresses
+  res.send(JSON.stringify('[]'));
+
+  // TODO
+  // Query database for address
 });
 
 app.listen(3000, () => {
