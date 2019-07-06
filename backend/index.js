@@ -20,7 +20,9 @@ app.use((req, _res, next) => {
 // Mount URI routes
 app.use('/api/addresses', routes.addresses);
 
-// Start Express.js server
-app.listen(process.env.SERVER_PORT, () => {
-  console.log(`App listening on port ${process.env.SERVER_PORT}`);
+// Connect to database and then start Express.js server
+connectMon().then(() => {
+  app.listen(process.env.SERVER_PORT, () => {
+    console.log(`App listening on port ${process.env.SERVER_PORT}`);
+  });
 });

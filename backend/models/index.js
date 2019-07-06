@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
 import Address from './address';
+import User from './user';
+
+// Avoid using deprecated ensureIndex by using useCreateIndex instead
+mongoose.set('useCreateIndex', true);
 
 // Handle any errors when attempting to connect to the database
 mongoose.connection.on('error', (err) => {
@@ -7,7 +11,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 const connectMon = () => mongoose.connect(process.env.DB_URI);
-const models = { Address };
+const models = { Address, User };
 
 export { connectMon };
 export default models;

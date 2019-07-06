@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 
 const addressSchema = new mongoose.Schema({
-  locationName: String,
+  addressName: String,
+  isPublic: { type: Boolean, default: true },
+  isSaved: { type: Boolean, default: true },
   name: String,
   company: String,
   street1: String,
@@ -13,7 +15,8 @@ const addressSchema = new mongoose.Schema({
   residential: Boolean,
   phone: String,
   email: String,
-  _easyPostID: String,
+  easyPostID: String,
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 const Address = mongoose.model('Address', addressSchema);
