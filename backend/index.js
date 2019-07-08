@@ -34,11 +34,10 @@ mongoose.connect(process.env.DB_URI).then(() => {
   app.use(session({
     secret: process.env.SESSIONS_SECRET_KEY,
     saveUninitialized: true, // Save session, even if no other data has been changed
-    resave: false, // Don't save session if unmodified; expiration time will still be updated
+    resave: false, // Don't save session if unmodified (note: expiration time will still be updated)
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      // ttl: 7776000, // 90 * 24 * 60 * 60 = 90 Days
-      ttl: 60, // 1 * 60 = 1 minute FOR DEBUG ONLY (TODO: update this)
+      ttl: process.env.SESSIONS_TTL,
     }),
   }));
 

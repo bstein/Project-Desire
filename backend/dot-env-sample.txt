@@ -7,6 +7,10 @@ DB_URI = 'mongodb://localhost:27017/data'
 # Store a random 16-32 byte key for creating cookie signatures
 SESSIONS_SECRET_KEY = ''
 
+# The number of seconds session data should remain in the database
+# 7776000 = 90 days * 24 hours * 60 minutes * 60 seconds
+SESSION_TTL = 7776000
+
 # OAuth 2.0 Client Credentials for Google Cloud Identity API
 GOOGLE_CLIENT_ID = ''
 GOOGLE_CLIENT_SECRET = ''
