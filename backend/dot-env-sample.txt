@@ -4,6 +4,9 @@ SERVER_PORT = 8000
 # The path to MongoDB databases
 DB_URI = 'mongodb://localhost:27017/data'
 
+# Store a random 16-32 byte key for creating cookie signatures
+SESSIONS_SECRET_KEY = ''
+
 # OAuth 2.0 Client Credentials for Google Cloud Identity API
 GOOGLE_CLIENT_ID = ''
 GOOGLE_CLIENT_SECRET = ''
