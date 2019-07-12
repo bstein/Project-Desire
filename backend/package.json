@@ -4,9 +4,10 @@
   "description": "A smarter way to ship packages",
   "main": "index.js",
   "scripts": {
-    "start-mongod": "mongod --config mongod.conf",
+    "start-mongo": "mongod --config mongod.conf",
     "start": "nodemon -r esm index.js",
     "start-once": "node -r esm index.js",
+    "stop-mongo": "mongo admin --eval \"db.shutdownServer()\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bailey Stein",

@@ -1,7 +1,7 @@
 import addresses from './addresses';
-import login from './login';
+import auth from './auth';
 
 export default {
   addresses,
-  login,
+  auth,
 };

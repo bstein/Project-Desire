@@ -4,14 +4,18 @@ import express from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
+import passport from 'passport';
 import models from './models';
 import routes from './routes';
+
+const passportConfig = require('./passport-config');
 
 const MongoStore = connectMongo(session);
 
 // Intialize MongoDB connection
-// Avoid using deprecated ensureIndex by using useCreateIndex instead
+// Avoid deprecated options
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 
 // Handle any errors when attempting to connect to the database
 mongoose.connection.on('error', (err) => {
@@ -30,10 +34,14 @@ mongoose.connect(process.env.DB_URI).then(() => {
     next();
   });
 
+  // Initialize passport
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   // Store session information in MongoDB database
   app.use(session({
     secret: process.env.SESSIONS_SECRET_KEY,
-    saveUninitialized: true, // Save session, even if no other data has been changed
+    saveUninitialized: false, // Don't save session if no other data has been changed
     resave: false, // Don't save session if unmodified (note: expiration time will still be updated)
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
@@ -43,7 +51,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 
   // Mount URI routes
   app.use('/api/addresses', routes.addresses);
-  app.use('/login', routes.login);
+  app.use('/auth', routes.auth);
 
   // Finally, begin listening with Express.js
   app.listen(process.env.SERVER_PORT, () => {
