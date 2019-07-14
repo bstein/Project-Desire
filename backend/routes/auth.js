@@ -3,7 +3,13 @@ import passport from 'passport';
 
 const router = Router();
 
-// TODO - login page
+// TODO - new login page
+router.get('/login-new', (req, res) => {
+  
+  return res.send('placeholder for logout page!!!');
+});
+
+// TODO - replace this old login approach
 router.get('/login',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -12,6 +18,7 @@ router.get('/',
   passport.authenticate('google', { failureRedirect: '/auth/login' }),
   (req, res) => {
     // Successful authentication, redirect for debug purpose
+    // TODO - implement meaningful redirect
     res.redirect('/#authenticatedDEBUG');
   });
 

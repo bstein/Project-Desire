@@ -34,6 +34,9 @@ mongoose.connect(process.env.DB_URI).then(() => {
     next();
   });
 
+  // Prepare EJS to render templates under ./views
+  app.set('view engine', 'ejs');
+
   // Initialize passport
   app.use(passport.initialize());
   app.use(passport.session());
