@@ -11,6 +11,8 @@ router.get('/login', (req, res) => {
 
 // Clear session
 router.post('/logout', (req, res) => {
+  res.locals.authenticated = false;
+  res.locals.user = null;
   req.session.destroy(() => {
     res.sendStatus(200);
   });
@@ -70,6 +72,8 @@ router.post('/verify-token', async (req, res) => {
 
       // eslint-disable-next-line no-underscore-dangle
       req.session.user_id = user._id;
+      res.locals.user = user;
+      res.locals.authenticated = true;
 
       // Send status code based on new or existing user
       if (!user.defaultAddress) {

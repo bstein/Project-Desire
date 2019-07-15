@@ -47,13 +47,23 @@ mongoose.connect(process.env.DB_URI).then(() => {
     }),
   }));
 
+  // Retrieve user info from database, based on ID
+  app.use(async (req, res, next) => {
+    if (req.session.user_id) {
+      res.locals.user = await User.findById({ _id: req.session.user_id });
+      res.locals.authenticated = true;
+    } else {
+      res.locals.authenticated = false;
+    }
+    next();
+  });
+
   // Mount URI routes
   app.use('/api/addresses', routes.addresses);
   app.use('/', routes.account);
   app.get('/', async (req, res) => {
-    if (req.session.user_id) {
-      const user = await User.findById({ _id: req.session.user_id });
-      res.send(`Hello <strong>${user.name}</strong>!`);
+    if (res.locals.authenticated) {
+      res.send(`Hello <strong>${res.locals.user.name}</strong>!`);
     } else {
       res.send('Not logged in!');
     }
