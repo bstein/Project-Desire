@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
 import cors from 'cors';
 import routes from './routes';
+import User from './models/user';
 
 const MongoStore = connectMongo(session);
 
@@ -39,6 +40,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
     secret: process.env.SESSIONS_SECRET_KEY,
     saveUninitialized: false, // Don't save session if no other data has been changed
     resave: false, // Don't save session if unmodified (note: expiration time will still be updated)
+    secure: 'auto', // Set cookie to be secure if HTTPS (production), otherwise set it to be not secure (debugging)
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
       ttl: process.env.SESSIONS_TTL,
@@ -48,6 +50,14 @@ mongoose.connect(process.env.DB_URI).then(() => {
   // Mount URI routes
   app.use('/api/addresses', routes.addresses);
   app.use('/', routes.account);
+  app.get('/', async (req, res) => {
+    if (req.session.user_id) {
+      const user = await User.findById({ _id: req.session.user_id });
+      res.send(`Hello <strong>${user.name}</strong>!`);
+    } else {
+      res.send('Not logged in!');
+    }
+  });
 
   // Finally, begin listening with Express.js
   app.listen(process.env.SERVER_PORT, () => {

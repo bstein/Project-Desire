@@ -9,6 +9,13 @@ router.get('/login', (req, res) => {
   res.render('login', { GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID, DOMAIN_URI: process.env.DOMAIN_URI });
 });
 
+// Clear session
+router.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.sendStatus(200);
+  });
+});
+
 // Render account detail / settings page
 router.get('/account', (req, res) => {
   res.render('account', { GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID, DOMAIN_URI: process.env.DOMAIN_URI });
@@ -60,6 +67,9 @@ router.post('/verify-token', async (req, res) => {
         values,
         { new: true, upsert: true },
       );
+
+      // eslint-disable-next-line no-underscore-dangle
+      req.session.user_id = user._id;
 
       // Send status code based on new or existing user
       if (!user.defaultAddress) {
