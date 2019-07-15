@@ -47,26 +47,26 @@ mongoose.connect(process.env.DB_URI).then(() => {
     }),
   }));
 
-  // Retrieve user info from database, based on ID
+  // Mount non-privileged URI routes
+  app.use('/', routes.login);
+
+  // Middleware that authenticates users for *ALL* following routes
   app.use(async (req, res, next) => {
     if (req.session.user_id) {
       res.locals.user = await User.findById({ _id: req.session.user_id });
       res.locals.authenticated = true;
+      next();
     } else {
       res.locals.authenticated = false;
+      res.redirect('/login');
     }
-    next();
   });
 
-  // Mount URI routes
+  // Mount privileged URI routes
   app.use('/api/addresses', routes.addresses);
   app.use('/', routes.account);
   app.get('/', async (req, res) => {
-    if (res.locals.authenticated) {
-      res.send(`Hello <strong>${res.locals.user.name}</strong>!`);
-    } else {
-      res.send('Not logged in!');
-    }
+    res.send(`Hello <strong>${res.locals.user.name}</strong>!`);
   });
 
   // Finally, begin listening with Express.js

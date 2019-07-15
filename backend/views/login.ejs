@@ -14,17 +14,16 @@
       function onSignIn(googleUser) {
         const id_token = googleUser.getAuthResponse().id_token;
 
-        fetch('<%= DOMAIN_URI %>/verify-token', {
+        fetch('/verify-token', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: `${encodeURIComponent('idtoken')}=${encodeURIComponent(id_token)}`,
         }).then((res) => {
-          if (res.status === 200) {
-            // TODO - existing user
-            location.replace('<%= DOMAIN_URI %>');
-          } else if (res.status === 201) {
-            // TODO - new user
-            location.replace('<%= DOMAIN_URI %>/account');
+          if (res.status === 200 || res.status === 201) {
+            location.replace('/');
+          // } else if (res.status === 201) {
+          //  // TODO - new user
+          //  location.replace('/account');
           } else {
             location.reload(true);
           }

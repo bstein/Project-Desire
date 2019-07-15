@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Account</h1>
-    <a href="<%= DOMAIN_URI %>/login" onclick="signOut();">Sign out</a>
+    <a href="/login" onclick="signOut();">Sign out</a>
     <script>
         function init() {
           gapi.load('auth2', () => {
@@ -16,7 +16,7 @@
         }
 
         function signOut() {
-          fetch('<%= DOMAIN_URI %>/logout', { method: 'POST' }).then((res) => {
+          fetch('/logout', { method: 'POST' }).then((res) => {
             const auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut();
           });

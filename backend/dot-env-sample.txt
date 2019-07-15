@@ -3,7 +3,6 @@ SERVER_PORT = 8000
 
 # The path to MongoDB databases
 DB_URI = 'mongodb://localhost:27017/data'
-DOMAIN_URI = 'http://localhost:8000'
 
 # Store a random 16-32 byte key for creating cookie signatures
 SESSIONS_SECRET_KEY = ''
