@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import models from '../../models';
 
 const router = Router();
 
@@ -18,8 +19,8 @@ router.get('/', async (req, res) => {
   }
 
   // Retrieve addresses from database
-  const addresses = await req.models.Address.find(conditions);
-  return res.send(addresses);
+  const addresses = await models.Address.find(conditions);
+  res.send(addresses);
 });
 
 export default router;

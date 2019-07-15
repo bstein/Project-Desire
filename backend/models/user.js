@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  isAdmin: Boolean,
+  isAdmin: { type: Boolean, default: false },
   name: String,
   email: String,
-  googleID: { type: String, unqiue: true },
+  userID: { type: String, unqiue: true },
   defaultAddress: { type: mongoose.Schema.Types.ObjectId, ref: 'Address' },
 });
 

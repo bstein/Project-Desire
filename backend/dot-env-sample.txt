@@ -3,6 +3,7 @@ SERVER_PORT = 8000
 
 # The path to MongoDB databases
 DB_URI = 'mongodb://localhost:27017/data'
+DOMAIN_URI = 'http://localhost:8000'
 
 # Store a random 16-32 byte key for creating cookie signatures
 SESSIONS_SECRET_KEY = ''
@@ -12,9 +13,8 @@ SESSIONS_SECRET_KEY = ''
 SESSION_TTL = 7776000
 
 # OAuth 2.0 Client Credentials for Google Cloud Identity API
-GOOGLE_CLIENT_ID = ''
+GOOGLE_CLIENT_ID = '50381855807-1dXC7Jx4zJU4x6R2Iiz20kTib7N143QR'
 GOOGLE_CLIENT_SECRET = ''
-GOOGLE_CALLBACK = 'http://localhost:8000'
 
 # A test or production API key for accessing the EasyPost API
 EASY_POST_API_KEY = ''

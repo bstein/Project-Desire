@@ -4,11 +4,8 @@ import express from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
-import passport from 'passport';
-import models from './models';
+import cors from 'cors';
 import routes from './routes';
-
-const passportConfig = require('./passport-config');
 
 const MongoStore = connectMongo(session);
 
@@ -26,20 +23,16 @@ mongoose.connection.on('error', (err) => {
 mongoose.connect(process.env.DB_URI).then(() => {
   // Initialize Express.js app
   const app = express();
-  app.use(json());
-  app.use(urlencoded({ extended: true }));
-  app.use((req, _res, next) => {
-    // Store models data within the request
-    req.models = models;
-    next();
-  });
-
-  // Prepare EJS to render templates under ./views
   app.set('view engine', 'ejs');
 
-  // Initialize passport
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // Enable all CORS requests in debug mode
+  if (process.env.NODE_ENV !== 'production') {
+    app.use(cors());
+  }
+
+  // Parse incoming JSON and URL-encoded/form data
+  app.use(json());
+  app.use(urlencoded({ extended: true }));
 
   // Store session information in MongoDB database
   app.use(session({
@@ -54,7 +47,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 
   // Mount URI routes
   app.use('/api/addresses', routes.addresses);
-  app.use('/auth', routes.auth);
+  app.use('/', routes.account);
 
   // Finally, begin listening with Express.js
   app.listen(process.env.SERVER_PORT, () => {

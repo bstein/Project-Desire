@@ -15,13 +15,14 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-mongo": "^3.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
+    "ejs": "^2.6.2",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "google-auth-library": "^4.2.5",
     "mongodb": "^3.2.7",
-    "mongoose": "^5.6.3",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^2.0.0"
+    "mongoose": "^5.6.3"
   }
 }
