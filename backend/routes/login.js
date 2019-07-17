@@ -40,7 +40,10 @@ router.post('/verify-token', async (req, res) => {
     // Establish session authentication
     try {
       // Set values for user
-      const values = { name: payload.name, email: payload.email };
+      const values = { name: payload.name, email: payload.email, pictureURL: '' };
+      if ('picture' in payload) {
+        values.pictureURL = payload.picture;
+      }
 
       // Query database to check if there is no admin
       const admin = await User.findOne({ isAdmin: true }, {});
