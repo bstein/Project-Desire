@@ -2,11 +2,11 @@
   "name": "project-desire",
   "version": "1.0.0",
   "description": "A smarter way to ship packages",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start-mongo": "mongod --config mongod.conf",
-    "start": "nodemon -r esm index.js",
-    "start-once": "node -r esm index.js",
+    "start": "nodemon -r esm server.js",
+    "start-once": "node -r esm server.js",
     "stop-mongo": "mongo admin --eval \"db.shutdownServer()\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -20,7 +20,7 @@ mongoose.connection.on('error', (err) => {
   console.error(`Failed to connect to MongoDB server | ${err}`);
 });
 
-// Finally, asynchronously attempt to connect to the database
+// Asynchronously attempt to connect to the database
 mongoose.connect(process.env.DB_URI).then(() => {
   // Initialize Express.js app
   const app = express();
@@ -73,4 +73,4 @@ mongoose.connect(process.env.DB_URI).then(() => {
   app.listen(process.env.SERVER_PORT, () => {
     console.log(`App listening on port ${process.env.SERVER_PORT}`);
   });
-});
+}); // TODO - catch if db connection failed
