@@ -54,11 +54,16 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-body {
-  margin: 0px;
-  background-color: #FDFDFD;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+}
+
+body {
+  background-color: #FDFDFD;
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
@@ -68,7 +73,8 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 nav {
   display: flex;
-  margin-top: 1.5em;
+  justify-content: space-between;
+  margin-top: 1.6em;
   margin-left: 6em;
   margin-right: 6em;
   font-weight: 700;
@@ -81,8 +87,9 @@ nav {
 }
 
 .nav-links-div {
-  margin-left: auto;
-  margin-right: 0.2em;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   padding-top: 0.22em;
   align-self: center;
   font-size: 1.75em;
@@ -91,4 +98,8 @@ nav {
 .nav-link {
   margin-left: 1.4em;
   text-align: center;
+}
+
+.nav-link:first-of-type {
+  margin-left: 0px;
 }
