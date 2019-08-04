@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ShipComponent } from './ship/ship.component';
+import { AccountComponent } from './account/account.component';
 
-const routes: Routes = [];
-/*[
-  { path: 'history', component: HistoryComponent },
-  { path: 'account', component: AccountlComponent },
+const routes: Routes = [
+  //{ path: 'history', component: HistoryComponent },
+  { path: 'account', component: AccountComponent },
   {
     path: 'ship',
     component: ShipComponent,
@@ -14,9 +15,9 @@ const routes: Routes = [];
   { path: '',
     redirectTo: '/ship',
     pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
-];*/
+  }
+  //, { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

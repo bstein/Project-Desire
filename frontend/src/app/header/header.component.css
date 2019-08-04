@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  user-select: none;
+}
+
+.nav-title {
+  align-self: center;
+  font-size: 56px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-self: center;
+  font-size: 28px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.nav-links > li {
+  margin-left: 48px;
+  text-align: center;
+}
+
+.nav-links > li:first-of-type {
+  margin-left: 0px;
+}
+
+.inactiveLink {
+  color: #77757A;
+  opacity: 0.75;
+}
+
+.activeLink {
+  color: #22172D;
+  opacity: 1;
+}

@@ -59,7 +59,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
 }
 
 body {
@@ -71,36 +70,8 @@ h1, h2, h3, h4, h5, h6, p, a {
   text-decoration: none;
 }
 
-.nav-main {
-  display: flex;
-  justify-content: space-between;
+.page {
   margin-top: 24px;
   margin-left: 72px;
   margin-right: 72px;
-  font-weight: 700;
-  user-select: none;
-}
-
-.nav-title {
-  align-self: center;
-  font-size: 3.3em;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  padding-top: 0.22em;
-  align-self: center;
-  font-size: 1.75em;
-  list-style: none;
-}
-
-.nav-links > li {
-  margin-left: 1.4em;
-  text-align: center;
-}
-
-.nav-links > li:first-of-type {
-  margin-left: 0px;
 }
