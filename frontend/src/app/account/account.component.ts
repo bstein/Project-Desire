@@ -6,29 +6,44 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  docAddMetaTag(name, content) {
-    const node = document.createElement('meta');
-    node.name = name;
-    node.content = content;
-    document.getElementsByTagName('head')[0].appendChild(node);
+  docAddMeta(name, content) {
+    const meta = document.createElement('meta');
+    meta.name = name;
+    meta.content = content;
+    document.getElementsByTagName('head')[0].appendChild(meta);
   }
 
+  // Add Content Security Policy with nonce to HTML head
+  // docAddCSP(nonce) {
+  //   const meta = document.createElement('meta');
+  //   meta.setAttribute('http-equiv', 'Content-Security-Policy');
+  //   meta.content = `script-src 'unsafe-inline' https: 'nonce-${nonce}' 'strict-dynamic'`;
+  //   document.getElementsByTagName('head')[0].appendChild(meta);
+  // }
+
   docAddScript(src, async, defer, charset) {
-    const node = document.createElement('script');
-    node.src = src;
-    node.type = 'text/javascript';
-    node.async = async;
-    node.defer = defer;
-    node.charset = charset;
-    document.getElementsByTagName('head')[0].appendChild(node);
+    const script = document.createElement('script');
+    // script.nonce = `nonce-${nonce}`;
+    script.src = src;
+    script.type = 'text/javascript';
+    script.charset = charset;
+    if (async) { script.setAttribute('async', ''); }
+    if (defer) { script.setAttribute('defer', ''); }
+    document.getElementsByTagName('head')[0].appendChild(script);
   }
 
   constructor() {
     // Add Google API Meta Tags to HTML
-    this.docAddMetaTag('google-signin-scope', 'profile email');
-    this.docAddMetaTag('google-signin-client_id', `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`)
+    this.docAddMeta('google-signin-scope', 'profile email');
+    this.docAddMeta('google-signin-client_id', `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`);
+    this.docAddMeta('google-signin-ux_mode', 'redirect'); // TODO - replace with default popup ux_mode?
 
-    // Add Google API Platform script to HTML
+    // Sample, static nonce - TODO: replace with dynamic nonce
+    // Not in use currently as it doesn't seem to have any effect
+    // const nonce = '';
+    // this.docAddCSP(nonce);
+
+    // Add Google API Platform script to HTML (note: nonce could be added here)
     this.docAddScript('https://apis.google.com/js/platform.js?onload=init', true, true, 'utf-8');
 
     window['onSignIn'] = function (googleUser) {

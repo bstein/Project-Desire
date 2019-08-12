@@ -45,19 +45,12 @@ export class HeaderComponent implements OnInit {
 
   setLinkActive(route) {
     // Show 'route' link as active
-    switch (route) {
-      case '/':
-      case '/ship':
-        this.shipActive = true;
-        break;
-      case '/history':
-        this.historyActive = true;
-        break;
-      case '/account':
-        this.accountActive = true;
-        break;
-      default:
-        break;
+    if (route.substring(0, '/history'.length) === '/history') {
+      this.historyActive = true;
+    } else if (route.substring(0, '/account'.length) === '/account') {
+      this.accountActive = true;
+    } else { // this block should run for routes '/' and '/ship'
+      this.shipActive = true;
     }
   }
 }
