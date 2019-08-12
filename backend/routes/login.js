@@ -4,13 +4,8 @@ import User from '../models/user';
 
 const router = Router();
 
-// Render landing / login page
-router.get('/login', (req, res) => {
-  res.render('login', { GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID });
-});
-
 // Verify the posted token and redirect accordingly
-router.post('/verify-token', async (req, res) => {
+router.post('/api/verify-token', async (req, res) => {
   let errorThrown = false;
   const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
