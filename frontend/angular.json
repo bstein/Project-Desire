@@ -22,8 +22,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/env.js",
-              "src/scriptTagContext.js"
+              "src/env.js"
             ],
             "styles": [
               "src/styles.css"
