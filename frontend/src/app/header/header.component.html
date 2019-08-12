@@ -3,13 +3,13 @@
     Project Desire
   </a>
   <ul class="nav-links">
-    <li><a routerLink="/ship" routerLinkActive="activeLink" i18n="@@ship" class="inactiveLink">
+    <li><a [ngClass]="{ 'link': true, 'linkLeft': true, 'inactiveLink': !shipActive, 'activeLink': shipActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/ship" i18n="@@ship">
       Ship
     </a></li>
-    <li><a routerLink="/history" routerLinkActive="activeLink" i18n="@@history" class="inactiveLink">
+    <li><a [ngClass]="{ 'link': true, 'inactiveLink': !historyActive, 'activeLink': historyActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/history" i18n="@@history">
       History
     </a></li>
-    <li><a routerLink="/account" routerLinkActive="activeLink" i18n="@@account" class="inactiveLink">
+    <li><a [ngClass]="{ 'link': true, 'linkRight': true, 'inactiveLink': !accountActive, 'activeLink': accountActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/account" i18n="@@account">
       Account
     </a></li>
   </ul>

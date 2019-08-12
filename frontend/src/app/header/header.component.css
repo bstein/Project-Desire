@@ -6,6 +6,7 @@ nav {
 }
 
 .nav-title {
+  padding-right: 24px;
   align-self: center;
   font-size: 56px;
 }
@@ -21,13 +22,20 @@ nav {
   list-style: none;
 }
 
-.nav-links > li {
-  margin-left: 48px;
+.link {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
   text-align: center;
 }
 
-.nav-links > li:first-of-type {
-  margin-left: 0px;
+.linkLeft {
+  padding-left: 0px;
+}
+
+.linkRight {
+  padding-right: 0px;
 }
 
 .inactiveLink {
