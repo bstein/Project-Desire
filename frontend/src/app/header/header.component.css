@@ -15,10 +15,12 @@ nav {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  align-self: center;
   font-size: 28px;
   padding: 0;
-  margin: 0;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: auto;
+  margin-bottom: 12px;
   list-style: none;
 }
 
