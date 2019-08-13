@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Event, NavigationStart } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,8 @@ export class HeaderComponent implements OnInit {
   currentRoute = '/ship';
   constructor(private router: Router) {
     this.router.events.subscribe((event: Event) => {
-        if (event instanceof NavigationStart) {
+        if (event instanceof NavigationStart || event instanceof NavigationEnd) {
+          console.log(`DEBUG - current route:  ${event.url}`);
           this.currentRoute = event.url;
           this.setLinkActive(this.currentRoute);
         }
