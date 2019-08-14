@@ -30,12 +30,12 @@ export class AccountComponent implements OnInit {
   constructor(private auth: AuthService, private redirect: RedirectService) {
     this.auth.isLoggedIn(() => { this.redirect.to('/account/login') }).then((val) => { this.loggedIn = val; });
 
-    // Add Google API Meta Tags to HTML
-    this.docAddMeta('google-signin-scope', 'profile email');
-    this.docAddMeta('google-signin-client_id', `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`);
+    // // Add Google API Meta Tags to HTML
+    // this.docAddMeta('google-signin-scope', 'profile email');
+    // this.docAddMeta('google-signin-client_id', `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`);
 
-    // Add Google API Platform script to HTML
-    this.docAddScript('https://apis.google.com/js/platform.js?onload=init', true, true, 'utf-8');
+    // // Add Google API Platform script to HTML
+    // this.docAddScript('https://apis.google.com/js/platform.js?onload=init', true, true, 'utf-8');
 
 
   }
@@ -44,7 +44,7 @@ export class AccountComponent implements OnInit {
   }
 
   signOut() {
-    
+
   }
 
 }
