@@ -68,10 +68,10 @@ body {
 h1, h2, h3, h4, h5, h6, p, a {
   color: #22172D;
   text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
-.page {
-  margin-top: 24px;
+.stdSideMargins {
   margin-left: 72px;
   margin-right: 72px;
 }

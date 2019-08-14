@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +8,11 @@ import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   // Keep track of the current route (update variable whenever new navigation starts)
-  currentRoute = '/ship';
+  currentRoute = window.location.pathname;
+  
   constructor(private router: Router) {
     this.router.events.subscribe((event: Event) => {
-        if (event instanceof NavigationStart || event instanceof NavigationEnd) {
-          console.log(`DEBUG - current route:  ${event.url}`);
+        if (event instanceof NavigationStart) {
           this.currentRoute = event.url;
           this.setLinkActive(this.currentRoute);
         }
@@ -28,30 +28,27 @@ export class HeaderComponent implements OnInit {
   accountActive = false;
 
   hoverActivated(event) {
-    this.resetAllLinks();
     this.setLinkActive((event.target as HTMLElement).getAttribute('routerLink'));
   }
 
-  hoverDeactivated(event) {
-    this.resetAllLinks();
+  hoverDeactivated() {
     this.setLinkActive(this.currentRoute);
-  }
-
-  resetAllLinks() {
-    // Reset all links to appear inactive
-    this.shipActive = false;
-    this.historyActive = false;
-    this.accountActive = false;
   }
 
   setLinkActive(route) {
     // Show 'route' link as active
     if (route.substring(0, '/history'.length) === '/history') {
+      this.shipActive = false;
       this.historyActive = true;
+      this.accountActive = false;
     } else if (route.substring(0, '/account'.length) === '/account') {
+      this.shipActive = false;
+      this.historyActive = false;
       this.accountActive = true;
     } else { // this block should run for routes '/' and '/ship'
       this.shipActive = true;
+      this.historyActive = false;
+      this.accountActive = false;
     }
   }
 }

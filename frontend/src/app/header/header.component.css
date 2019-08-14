@@ -3,6 +3,8 @@ nav {
   justify-content: space-between;
   font-weight: 600;
   user-select: none;
+  margin-top: 24px;
+  margin-bottom: 0px;
 }
 
 .nav-title {
@@ -20,7 +22,7 @@ nav {
   margin-left: 0px;
   margin-right: 0px;
   margin-top: auto;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   list-style: none;
 }
 
