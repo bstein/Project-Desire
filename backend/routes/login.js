@@ -5,7 +5,7 @@ import User from '../models/user';
 const router = Router();
 
 // Verify the posted token with Google and respond with a status code
-router.post('/api/verify-token', async (req, res) => {
+router.post('/', async (req, res) => {
   let errorThrown = false;
   const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 

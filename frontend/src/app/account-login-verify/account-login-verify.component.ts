@@ -1,5 +1,5 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RedirectService, AuthService } from '../global.service';
 
 @Component({
   selector: 'app-account-login-verify',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AccountLoginVerifyComponent implements OnInit {
 
-  constructor(private router: Router, private ngZone: NgZone) {
+  constructor(private redirect: RedirectService, private auth: AuthService) {
     // At the time of writing, Google was passing the id_token after #
     let params = this.getURIParams(window.location.hash);
 
@@ -17,8 +17,7 @@ export class AccountLoginVerifyComponent implements OnInit {
       params = this.getURIParams(window.location.search);
 
       if (!this.verifyToken(params)) {
-        console.log('DEBUG: second attempt failed');
-        this.redirectTo('/account/login');
+        this.redirect.to('/account/login');
       }
     }
   }
@@ -41,33 +40,27 @@ export class AccountLoginVerifyComponent implements OnInit {
 
   verifyToken(params) {
     if (!('id_token' in params)) {
-      console.log("DEBUG: no id_token!");
       return false;
     }
 
-    console.log('DEBUG: verifying token...');
-    fetch('/api/verify-token', {
+    fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `${encodeURIComponent('idtoken')}=${encodeURIComponent(params['id_token'])}`,
+      credentials: 'include',
     }).then((res) => {
       if (res.status === 200 || res.status === 201) { // TODO - delegate 201 / new user to separate block
-        console.log("DEBUG: successful authentication!");
-        this.redirectTo('/ship');
+        this.auth.loginUpdate(true);
+        this.redirect.to('/ship');
       // } else if (res.status === 201) {
       //  // TODO - new user
-      //  this.redirectTo('/account/setup');
+      //  this.redirect.to('/account/setup');
       } else {
-        console.log("DEBUG: failed authentication!");
-        // this.redirectTo('/account/login');
+        this.redirect.to('/account/login');
       }
     });
 
     return true;
-  }
-
-  redirectTo(uri) {
-    this.ngZone.run(() => this.router.navigate([uri]));
   }
 
 }

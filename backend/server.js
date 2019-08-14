@@ -25,10 +25,11 @@ mongoose.connect(process.env.DB_URI).then(() => {
   // Initialize Express.js app
   const app = express();
 
-  // Enable all CORS requests in debug mode
-  if (process.env.NODE_ENV !== 'production') {
-    app.use(cors());
-  }
+  // Enable CORS requests from frontend
+  app.use(cors({
+    origin: [`${process.env.FRONTEND_URI}${process.env.FRONTEND_PORT}`],
+    credentials: true,
+  }));
 
   // Parse incoming JSON and URL-encoded/form data
   app.use(json());
@@ -47,7 +48,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
   }));
 
   // Mount non-privileged URI routes
-  app.use('/', routes.login);
+  app.use('/api/login', routes.login);
 
   // Middleware that authenticates users for *ALL* following routes
   app.use(async (req, res, next) => {
@@ -62,14 +63,15 @@ mongoose.connect(process.env.DB_URI).then(() => {
   });
 
   // Mount privileged URI routes
+  app.use('/api/status', routes.status);
   app.use('/api/addresses', routes.addresses);
-  app.use('/', routes.logout);
-  app.get('/', async (req, res) => {
+  app.use('/api/logout', routes.logout);
+  app.get('/api/username', async (req, res) => {
     res.send(`Hello <strong>${res.locals.user.name}</strong>!`);
   });
 
   // Finally, begin listening with Express.js
-  app.listen(process.env.SERVER_PORT, () => {
-    console.log(`App listening on port ${process.env.SERVER_PORT}`);
+  app.listen(process.env.BACKEND_PORT, () => {
+    console.log(`App listening on port ${process.env.BACKEND_PORT}`);
   });
 }); // TODO - catch if db connection failed

@@ -1,5 +1,8 @@
-# The port that the express server should run on
-SERVER_PORT = 3000
+# Declare backend port and frontend URI and port (for listening & CORS)
+# NOTE - Do not rely on host.req as it could be spoofed
+BACKEND_PORT = 3000
+FRONTEND_URI = 'http://localhost'
+FRONTEND_PORT = 4200
 
 # The path to MongoDB databases
 DB_URI = 'mongodb://localhost:27017/data'

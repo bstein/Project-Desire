@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RedirectService, AuthService } from '../global.service';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  greeting = "I'm not sure who you are! :(";
+  loggedIn = false;
 
-  constructor() { }
+  constructor(private auth: AuthService, private redirect: RedirectService) {
+    this.auth.isLoggedIn(() => { this.redirect.to('/account/login') }).then((val) => { this.loggedIn = val; });
+  }
 
   ngOnInit() {
   }
