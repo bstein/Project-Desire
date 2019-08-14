@@ -1,3 +1,5 @@
-<div class="container stdSideMargins">
-  <p *ngIf="loggedIn">This is privileged content from account</p>
+<div *ngIf="loggedIn" class="container stdSideMargins">
+  <p>Account (privileged content)</p>
+  <br><br><br>
+  <a href="#" (click)="signOut()">Sign out</a>
 </div>

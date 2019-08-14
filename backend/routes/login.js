@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
     // Extract Google's response payload
     try {
       payload = ticket.getPayload();
+      console.log(`Payload:\n${JSON.stringify(payload)}`);
     } catch (err) {
       console.error(`Couldn't get payload - ${err}`);
       errorThrown = true;
