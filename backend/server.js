@@ -24,7 +24,6 @@ mongoose.connection.on('error', (err) => {
 mongoose.connect(process.env.DB_URI).then(() => {
   // Initialize Express.js app
   const app = express();
-  app.set('view engine', 'ejs');
 
   // Enable all CORS requests in debug mode
   if (process.env.NODE_ENV !== 'production') {
@@ -58,13 +57,13 @@ mongoose.connect(process.env.DB_URI).then(() => {
       next();
     } else {
       res.locals.authenticated = false;
-      res.redirect('/login');
+      res.sendStatus(403);
     }
   });
 
   // Mount privileged URI routes
   app.use('/api/addresses', routes.addresses);
-  app.use('/', routes.account);
+  app.use('/', routes.logout);
   app.get('/', async (req, res) => {
     res.send(`Hello <strong>${res.locals.user.name}</strong>!`);
   });

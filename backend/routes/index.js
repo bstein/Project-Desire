@@ -1,9 +1,9 @@
 import addresses from './addresses';
-import account from './account';
 import login from './login';
+import logout from './logout';
 
 export default {
   addresses,
-  account,
   login,
+  logout,
 };

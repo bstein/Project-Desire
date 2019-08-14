@@ -69,4 +69,5 @@ export class AccountLoginVerifyComponent implements OnInit {
   redirectTo(uri) {
     this.ngZone.run(() => this.router.navigate([uri]));
   }
+
 }
