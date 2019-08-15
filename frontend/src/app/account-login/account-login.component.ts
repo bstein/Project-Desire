@@ -25,16 +25,16 @@ export class AccountLoginComponent implements OnInit {
   }
 
   constructor() {
-    // Add Google API Meta Tags to HTML
-    this.docAddMeta('google-signin-scope', 'profile email');
-    this.docAddMeta('google-signin-client_id', `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`);
+    // // Add Google API Meta Tags to HTML
+    // this.docAddMeta('google-signin-scope', 'profile email');
+    // this.docAddMeta('google-signin-client_id', `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`);
 
-    // NOTE: Use redirect here instead of popup to workaround issues with CSP (GitHub Issue #1)
-    this.docAddMeta('google-signin-ux_mode', 'redirect');
-    this.docAddMeta('google-signin-redirect_uri', `${window.location.origin}/account/login/verify`);
+    // // NOTE: Use redirect here instead of popup to workaround issues with CSP (GitHub Issue #1)
+    // this.docAddMeta('google-signin-ux_mode', 'redirect');
+    // this.docAddMeta('google-signin-redirect_uri', `${window.location.origin}/account/login/verify`);
 
-    // Add Google API Platform script to HTML
-    this.docAddScript('https://apis.google.com/js/platform.js?onload=init', true, true, 'utf-8');
+    // // Add Google API Platform script to HTML
+    // this.docAddScript('https://apis.google.com/js/platform.js?onload=init', true, true, 'utf-8');
   }
 
   ngOnInit() {
