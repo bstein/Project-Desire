@@ -5,6 +5,7 @@
 }
 
 .signin-title {
+  margin-bottom: 24px;
   font-size: 56px;
   font-weight: 600;
   line-height: 1.25em;
@@ -12,9 +13,15 @@
 }
 
 .signin-desc {
-  margin-top: 48px;
-  margin-bottom: 48px;
+  margin-top: 24px;
+  margin-bottom: 24px;
   font-size: 20px;
   line-height: 1.25em;
   user-select: none;
+}
+
+.signin-google {
+  margin-top: 24px;
+  width: 160px;
+  height: 48px;
 }

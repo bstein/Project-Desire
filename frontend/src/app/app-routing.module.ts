@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'history', component: HistoryComponent },
   { path: 'account', component: AccountComponent },
   { path: 'account/login', component: AccountLoginComponent },
-  { path: 'account/login/verify', component: AccountLoginVerifyComponent },
+  // NOTE - This module is no longer in use
+  // { path: 'account/login/verify', component: AccountLoginVerifyComponent },
   {
     path: 'ship',
     component: ShipComponent,
