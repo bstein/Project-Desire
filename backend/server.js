@@ -53,13 +53,20 @@ mongoose.connect(process.env.DB_URI).then(() => {
   // Middleware that authenticates users for *ALL* following routes
   app.use(async (req, res, next) => {
     if (req.session.user_id) {
-      res.locals.user = await User.findById({ _id: req.session.user_id });
-      res.locals.authenticated = true;
-      next();
-    } else {
-      res.locals.authenticated = false;
-      res.sendStatus(403);
+      // Query the db with the user_id from the session cookie
+      const user = await User.findById({ _id: escape(req.session.user_id) });
+
+      // If user exists in database, confirm valid user
+      if (user) {
+        res.locals.user = user;
+        res.locals.authenticated = true;
+        next();
+      }
     }
+
+    // Not a valid user; return 403 Forbidden
+    res.locals.authenticated = false;
+    res.sendStatus(403);
   });
 
   // Mount privileged URI routes
