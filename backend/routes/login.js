@@ -24,12 +24,18 @@ router.post('/', async (req, res) => {
     // Extract Google's response payload
     try {
       payload = ticket.getPayload();
-      console.log(`Payload:\n${JSON.stringify(payload)}`);
     } catch (err) {
       console.error(`Couldn't get payload - ${err}`);
       errorThrown = true;
       res.sendStatus(502);
     }
+  }
+
+  // Verify token is for intended for this app
+  if (!errorThrown && payload.aud !== `${process.env.GOOGLE_CLIENT_ID}.apps.googleusercontent.com`) {
+    console.error(`payload.aud ( ${payload.aud} ) !== ${process.env.GOOGLE_CLIENT_ID}.apps.googleusercontent.com`);
+    errorThrow = true;
+    res.sendStatus(403);
   }
 
   if (!errorThrown) {

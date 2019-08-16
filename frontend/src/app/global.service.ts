@@ -22,6 +22,12 @@ export class AuthService {
 
   private knownStatus = new BehaviorSubject<boolean>(false);
   private loggedIn = new BehaviorSubject<boolean>(false);
+  
+  // NOTE - loggedIn will stay true even when the session cookie expires (e.g., the browser has been open for some time)
+  //          or if the user was deleted in the database on the backend, HOWEVER, this is not a security risk since
+  //          the backend checks before revealing any priveleged information. The The "worst case scenario" here is
+  //          receiving a 403 from the backend. If that happens, the '/api/status' call can be made again to
+  //          confirm the login status has indded changed to false.
 
   constructor() { }
 
