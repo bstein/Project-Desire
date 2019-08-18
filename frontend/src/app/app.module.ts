@@ -8,7 +8,6 @@ import { ShipComponent } from './ship/ship.component';
 import { HistoryComponent } from './history/history.component';
 import { AccountComponent } from './account/account.component';
 import { AccountLoginComponent } from './account-login/account-login.component';
-import { AccountLoginVerifyComponent } from './account-login-verify/account-login-verify.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import { AccountLoginVerifyComponent } from './account-login-verify/account-logi
     ShipComponent,
     HistoryComponent,
     AccountComponent,
-    AccountLoginComponent,
-    AccountLoginVerifyComponent
+    AccountLoginComponent
   ],
   imports: [
     BrowserModule,
