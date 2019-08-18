@@ -59,3 +59,36 @@ export class AuthService {
   }
 
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DocModifierService {
+
+  gapiPlatformSrc = 'https://apis.google.com/js/platform.js';
+
+  constructor() { }
+
+  runGAPI(toRun = () => {}) {
+    if (document.querySelectorAll(`script[src='${this.gapiPlatformSrc}']`).length > 0) {
+      toRun();
+    } else {
+      const script = document.createElement('script');
+      script.setAttribute('src', this.gapiPlatformSrc);
+      script.setAttribute('type', 'text/javascript');
+      script.setAttribute('charset', 'utf-8');
+      script.setAttribute('async', '');
+      script.setAttribute('defer', '');
+      script.onload = toRun;
+      document.head.appendChild(script);
+    }
+  }
+
+  addMetaTag(name, content) {
+    const meta = document.createElement('meta');
+    meta.setAttribute('name', name);
+    meta.setAttribute('content', content);
+    document.head.appendChild(meta);
+  }
+
+}

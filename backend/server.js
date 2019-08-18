@@ -48,7 +48,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
   }));
 
   // Mount non-privileged URI routes
-  app.use('/api/login', routes.login);
+  app.use('/', routes.auth);
 
   // Middleware that authenticates users for *ALL* following routes
   app.use(async (req, res, next) => {
@@ -71,14 +71,11 @@ mongoose.connect(process.env.DB_URI).then(() => {
         res.sendStatus(403);
       }
     }
-
-
   });
 
   // Mount privileged URI routes
   app.use('/api/status', routes.status);
   app.use('/api/addresses', routes.addresses);
-  app.use('/api/logout', routes.logout);
   app.get('/api/username', async (req, res) => {
     res.send(`Hello <strong>${res.locals.user.name}</strong>!`);
   });

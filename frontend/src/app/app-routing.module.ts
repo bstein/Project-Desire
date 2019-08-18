@@ -5,7 +5,7 @@ import { ShipComponent } from './ship/ship.component';
 import { HistoryComponent } from './history/history.component';
 import { AccountComponent } from './account/account.component';
 import { AccountLoginComponent } from './account-login/account-login.component';
-import { AccountLoginVerifyComponent } from './account-login-verify/account-login-verify.component';
+// import { AccountLoginVerifyComponent } from './account-login-verify/account-login-verify.component';
 
 const routes: Routes = [
   { path: 'history', component: HistoryComponent },

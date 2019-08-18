@@ -20,7 +20,7 @@
   user-select: none;
 }
 
-.signin-google {
+#signin-google {
   margin-top: 24px;
   width: 160px;
   height: 48px;

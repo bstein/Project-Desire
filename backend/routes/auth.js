@@ -4,8 +4,8 @@ import User from '../models/user';
 
 const router = Router();
 
-// Verify the posted token with Google and respond with a status code
-router.post('/', async (req, res) => {
+// Log in - verify the posted token with Google and respond with a status code
+router.post('/api/login', async (req, res) => {
   let errorThrown = false;
   const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
   // Verify token is for intended for this app
   if (!errorThrown && payload.aud !== `${process.env.GOOGLE_CLIENT_ID}.apps.googleusercontent.com`) {
     console.error(`payload.aud ( ${payload.aud} ) !== ${process.env.GOOGLE_CLIENT_ID}.apps.googleusercontent.com`);
-    errorThrow = true;
+    errorThrown = true;
     res.sendStatus(403);
   }
 
@@ -77,6 +77,15 @@ router.post('/', async (req, res) => {
       res.sendStatus(500);
     }
   }
+});
+
+// Clear session
+router.post('/api/logout', (req, res) => {
+  res.locals.authenticated = false;
+  res.locals.user = null;
+  req.session.destroy(() => {
+    res.sendStatus(200);
+  });
 });
 
 export default router;
