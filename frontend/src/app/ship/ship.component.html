@@ -1,10 +1,10 @@
 <div *ngIf="loggedIn" class="container stdSideMargins">
   <div class="leftContainer">
-    <h1>From</h1>
-    <app-address-form></app-address-form>
+    <h2>From</h2>
+    <app-address-form *ngIf="gotUsers" [users]="users"></app-address-form>
   </div>
   <div class="rightContainer">
-    <h1>To</h1>
-    <app-address-form></app-address-form>
-    </div>
+    <h2>To</h2>
+    <app-address-form *ngIf="gotUsers" [users]="users"></app-address-form>
+  </div>
 </div>

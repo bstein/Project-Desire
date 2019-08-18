@@ -75,6 +75,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 
   // Mount privileged URI routes
   app.use('/api/status', routes.status);
+  app.use('/api/users', routes.users);
   app.use('/api/addresses', routes.addresses);
   app.get('/api/username', async (req, res) => {
     res.send(`Hello <strong>${res.locals.user.name}</strong>!`);

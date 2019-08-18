@@ -1,10 +1,10 @@
 <form class="address-form">
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="full-width">
     <input matInput placeholder="Name" aria-label="Name" [matAutocomplete]="auto" [formControl]="nameCtrl">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let name of filteredNames | async" [value]="name.name">
-        <img class="example-option-img" aria-hidden [src]="name.pictureURL" height="25">
-        <span>{{name.name}}</span>
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="user.name">
+        <img class="profile-img" aria-hidden [src]="user.pictureURL">
+        <span>{{user.name}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

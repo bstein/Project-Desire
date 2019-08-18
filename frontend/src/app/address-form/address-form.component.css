@@ -2,16 +2,13 @@
   width: 300px;
 }
 
-.example-full-width {
+.full-width {
   width: 100%;
 }
 
-.example-option-img {
+.profile-img {
   vertical-align: middle;
   margin-right: 8px;
-}
-
-[dir='rtl'] .example-option-img {
-  margin-right: 0;
-  margin-left: 8px;
+  height: 25px;
+  width: 25px;
 }

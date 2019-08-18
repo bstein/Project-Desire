@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-export interface Name {
-  name: string;
-  pictureURL: string;
-}
+//import { User } from '../objects';
 
 @Component({
   selector: 'app-address-form',
@@ -14,43 +11,26 @@ export interface Name {
   styleUrls: ['./address-form.component.css']
 })
 export class AddressFormComponent implements OnInit {
+  @Input()
+  users: Object[];
   nameCtrl = new FormControl();
-  filteredNames: Observable<Name[]>;
-
-  names: Name[] = [
-    {
-      name: 'Alice',
-      pictureURL: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
-    },
-    {
-      name: 'Amy',
-      pictureURL: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg'
-    },
-    {
-      name: 'Alex',
-      pictureURL: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg'
-    },
-    {
-      name: 'Adam',
-      pictureURL: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
-    }
-  ];
+  filteredUsers: Observable<Object[]>;
 
   constructor() {
-    this.filteredNames = this.nameCtrl.valueChanges
+    this.filteredUsers = this.nameCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(name => name ? this._filterNames(name) : this.names.slice())
+        map(user => user ? this._filterUsers(user) : this.users.slice())
       );
   }
 
   ngOnInit() {
   }
 
-  private _filterNames(value: string): Name[] {
+  private _filterUsers(value: string): Object[] {
     const filterValue = value.toLowerCase();
 
-    return this.names.filter(name => name.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.users.filter(user => user["name"].toLowerCase().indexOf(filterValue) === 0);
   }
 
 }
