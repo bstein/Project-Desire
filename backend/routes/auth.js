@@ -79,7 +79,7 @@ router.post('/api/login', async (req, res) => {
   }
 });
 
-// Clear session
+// Logout - clear session
 router.post('/api/logout', (req, res) => {
   res.locals.authenticated = false;
   res.locals.user = null;
