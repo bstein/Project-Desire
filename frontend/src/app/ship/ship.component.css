@@ -1,4 +1,25 @@
 .container {
-  outline: 3px solid blue;
-  margin-top: 36px;
+  /*outline: 3px solid blue;*/
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 72px;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 72px;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 72px;
+}
+
+app-address-form {
+  margin-top: 24px;
 }

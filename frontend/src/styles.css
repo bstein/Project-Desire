@@ -1,3 +1,6 @@
+/* TODO - use a custom material theme later */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 /* Import Open Sans web font */
 @font-face {
   font-family: 'Open Sans';
