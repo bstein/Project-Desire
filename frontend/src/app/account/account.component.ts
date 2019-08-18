@@ -22,6 +22,7 @@ export class AccountComponent implements OnInit {
   initAuth2() {
     gapi.load('auth2', () => {
       gapi.auth2.init({
+        'scope': 'profile email',
         'client_id': `${window['__env']['GOOGLE_CLIENT_ID']}.apps.googleusercontent.com`,
       });
     });

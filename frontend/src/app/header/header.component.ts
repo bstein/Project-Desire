@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationStart } from '@angular/router';
 
+import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,11 +13,11 @@ export class HeaderComponent implements OnInit {
   currentRoute = window.location.pathname;
   
   constructor(private router: Router) {
-    this.router.events.subscribe((event: Event) => {
-        if (event instanceof NavigationStart) {
-          this.currentRoute = event.url;
-          this.setLinkActive(this.currentRoute);
-        }
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationStart)
+    ).subscribe((event: NavigationStart) => {
+      this.currentRoute = event.url;
+      this.setLinkActive(this.currentRoute);
     });
   }
 

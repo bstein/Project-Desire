@@ -1,4 +1,18 @@
 .container {
-  outline: 3px solid yellow;
-  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 72px;
+}
+
+.no-shipments {
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 21px;
+  user-select: none;
+}
+
+a {
+  font-weight: 700;
 }

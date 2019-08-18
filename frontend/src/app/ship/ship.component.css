@@ -1,5 +1,4 @@
 .container {
-  /*outline: 3px solid blue;*/
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
