@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatSlideToggleModule } from '@angular/material';
+import { MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatSlideToggleModule } from '@angular/material';
+// import { MatFormFieldModule } from '@angular/material/form-field'; 
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,7 @@ import { AddressFormComponent } from './address-form/address-form.component';
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatSlideToggleModule
   ],
   providers: [],

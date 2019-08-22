@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
-//import { User } from '../objects';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'app-address-form',
@@ -11,17 +10,16 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./address-form.component.css']
 })
 export class AddressFormComponent implements OnInit {
-  @Input()
-  users: Object[];
+  @Input() users: Object[];
   nameCtrl = new FormControl();
   filteredUsers: Observable<Object[]>;
 
   constructor() {
     this.filteredUsers = this.nameCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(user => user ? this._filterUsers(user) : this.users.slice())
-      );
+    .pipe(
+      startWith(''),
+      map(user => user ? this._filterUsers(user) : this.users.slice())
+    );
   }
 
   ngOnInit() {
@@ -30,7 +28,11 @@ export class AddressFormComponent implements OnInit {
   private _filterUsers(value: string): Object[] {
     const filterValue = value.toLowerCase();
 
-    return this.users.filter(user => user["name"].toLowerCase().indexOf(filterValue) === 0);
+    return this.users.filter(user => user['name'].toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private nameChanged(event: MatAutocompleteSelectedEvent) {
+    console.log(event.option.value);
   }
 
 }

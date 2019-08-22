@@ -2,7 +2,7 @@
   width: 300px;
 }
 
-.full-width {
+.address-form > * {
   width: 100%;
 }
 
