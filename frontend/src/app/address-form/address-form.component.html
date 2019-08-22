@@ -1,16 +1,18 @@
 <form class="address-form">
   <mat-form-field>
     <input matInput placeholder="Name" aria-label="Name" [matAutocomplete]="auto" [formControl]="nameCtrl">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="nameChanged($event)">
-      <mat-option *ngFor="let user of filteredUsers | async" [value]="user.name">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName" (optionSelected)="nameChanged($event)">
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
         <img class="profile-img" aria-hidden [src]="user.pictureURL">
         <span>{{user.name}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder=Location>
-      <mat-option value="option">Option</mat-option>
+  <mat-form-field *ngIf="gotAddresses">
+    <mat-select placeholder="Location">
+      <mat-option *ngFor="let address of addresses" [value]="address">
+        {{address.addressName}}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 </form>

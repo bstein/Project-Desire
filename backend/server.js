@@ -64,6 +64,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 
       if (user) {
         // User exists in the 'users' database
+        res.locals.user = user;
         res.locals.authenticated = true;
         next();
       } else {

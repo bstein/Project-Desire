@@ -21,11 +21,12 @@ export class ShipComponent implements OnInit {
     }).then((res) => {
       if (res.ok) { return res.json(); }
       throw new Error(res.status.toString());
-    }).then((data) => { 
+    }).then((data) => {
       this.users = data;
       this.gotUsers = true;
     }).catch(status => {
       if (status === 401 || status === 403) {
+        this.auth.loginUpdate(false);
         this.redirect.to('/account/login');
       }
       // TODO handle other status code / error
