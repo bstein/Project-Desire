@@ -21,7 +21,13 @@ export class AddressFormComponent implements OnInit {
   disableLocationSelect = false;
   selectedLocation;
 
-  showAddressFields = false;
+  disableAddressFields = false;
+
+  addressLine1 = '';
+  addressLine2 = '';
+  city = '';
+  state = '';
+  zipCode = '';
 
   constructor(private auth: AuthService, private redirect: RedirectService) {
     this.filteredUsers = this.nameCtrl.valueChanges
@@ -57,7 +63,6 @@ export class AddressFormComponent implements OnInit {
 
   private nameChanged(event: MatAutocompleteSelectedEvent) {
     // Clear existing post-name selections
-    this.showAddressFields = false;
     this.gotLocations = false;
     this.locations = [];
     this.selectedLocation = undefined;
@@ -104,22 +109,41 @@ export class AddressFormComponent implements OnInit {
   }
 
   private showLocations(disable) {
-    // TODO - it would probably be best to just not show the locations field if there aren't any saved
     this.locations.push({ addressName: '+ New Address' });
     this.selectedLocation = this.locations[0];
+
     this.disableLocationSelect = disable;
-    if (disable) { this.showAddressFields = true; }
+    this.disableAddressFields = !disable;
+    if (!disable) {
+      this.updateAddressFields(this.selectedLocation);
+    }
+
     this.gotLocations = true;
   }
 
   private locationChanged(event: MatSelectChange) {
-    // TODO - Clear existing post-location selections
-
     if (event.value['_id']) {
-      // TODO - Existing location was selected, show that address and disable changes
+      this.updateAddressFields(event.value);
+      this.disableAddressFields = true;
     } else {
-      this.showAddressFields = true;
+      this.updateAddressFields({});
+      this.disableAddressFields = false;
     }
+  }
+
+  private updateAddressFields(adr) {
+    this.addressLine1 = adr['street1'];
+    if (adr['street2'] && adr['street2'].length > 0) {
+      console.log(`street2 = ${adr['street2']}`);
+      this.addressLine2 = adr['street2'];
+    } else {
+      // TODO - for some reason, this doesn't always update :(
+      console.log(`setting street2 to empty`);
+      this.addressLine2 = "";
+    }
+    this.city = adr['city'];
+    this.state = adr['state'];
+    this.zipCode = adr['zip'];
   }
 
 }
