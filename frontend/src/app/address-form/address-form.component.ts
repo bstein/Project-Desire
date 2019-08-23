@@ -65,7 +65,12 @@ export class AddressFormComponent implements OnInit {
         method: 'GET',
         credentials: 'include',
       }).then((res) => {
-        if (res.ok) { return res.json(); }
+        if (res.ok) {
+          return res.json();
+        } else if (res.status === 401 || res.status === 403) {
+          this.auth.loginUpdate(false);
+          this.redirect.to('/account/login');
+        }
         throw new Error(res.status.toString());
       }).then((data) => {
         this.locations = data;
@@ -87,12 +92,8 @@ export class AddressFormComponent implements OnInit {
         }
 
         this.showLocations(this.locations.length === 0);
-      }).catch(status => {
-        if (status === 401 || status === 403) {
-          this.auth.loginUpdate(false);
-          this.redirect.to('/account/login');
-        }
-        // TODO handle other status code / error
+      }).catch(err => {
+        // TODO handle other / error
       });
     } else {
       this.showLocations(true);

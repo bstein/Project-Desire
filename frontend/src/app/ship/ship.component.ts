@@ -20,15 +20,15 @@ export class ShipComponent implements OnInit {
       credentials: 'include',
     }).then((res) => {
       if (res.ok) { return res.json(); }
+      else if (res.status === 401 || res.status === 403) {
+        this.auth.loginUpdate(false);
+        this.redirect.to('/account/login');
+      }
       throw new Error(res.status.toString());
     }).then((data) => {
       this.users = data;
       this.gotUsers = true;
-    }).catch(status => {
-      if (status === 401 || status === 403) {
-        this.auth.loginUpdate(false);
-        this.redirect.to('/account/login');
-      }
+    }).catch(err => {
       // TODO handle other status code / error
     });
   }
