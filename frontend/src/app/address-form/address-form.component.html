@@ -9,7 +9,7 @@
     </mat-autocomplete>
   </mat-form-field>
   <mat-form-field *ngIf="gotAddresses">
-    <mat-select placeholder="Location">
+    <mat-select placeholder="Location" [(value)]="selectedAddress" [disabled]="disableAddressSelect">
       <mat-option *ngFor="let address of addresses" [value]="address">
         {{address.addressName}}
       </mat-option>

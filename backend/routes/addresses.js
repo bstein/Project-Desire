@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Router } from 'express';
 import models from '../models';
 
@@ -6,6 +7,7 @@ const router = Router();
 // GET a sorted list (by addressName) of saved addresses from the database
 router.get('/', async (req, res) => {
   // Accepted URI parameters
+  // scope = normal (default) || privileged
   // owner = owner || all (default)
 
   // Prepare database find() conditions based on parameters
@@ -16,10 +18,15 @@ router.get('/', async (req, res) => {
     conditions.owner = req.query.owner;
   }
 
-  // If logged in user is not an admin and they're requesting other owner's addresses,
-  //  then only send public addresses
-  // eslint-disable-next-line no-underscore-dangle
-  if (!res.locals.user.isAdmin && req.query.owner !== res.locals.user._id) {
+  // logged in user is not owner
+  // AND
+  //  scope is not privileged
+  //  OR
+  //  logged in user is not an admin
+  if (req.query.owner.toString() !== res.locals.user._id.toString()
+      && (req.query.scope !== 'privileged'
+          || !res.locals.user.isAdmin)) {
+    // Limit results to public addresses
     conditions.isPublic = true;
   }
 
