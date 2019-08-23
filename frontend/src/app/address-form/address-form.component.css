@@ -1,9 +1,14 @@
 .address-form {
-  width: 300px;
+  width: 350px;
 }
 
-.address-form > * {
+mat-form-field {
   width: 100%;
+  font-size: 18px;
+}
+
+table {
+  width: 350px;
 }
 
 .profile-img {
@@ -11,4 +16,22 @@
   margin-right: 8px;
   height: 25px;
   width: 25px;
+}
+
+.profile-name {
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.city {
+  width: 165px;
+}
+
+.state {
+  width: 165px;
+  margin-left: 20px;
+}
+
+.manual-fields ::ng-deep .mat-form-field-infix {
+  border-top: 0;
 }

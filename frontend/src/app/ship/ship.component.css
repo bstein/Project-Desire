@@ -9,14 +9,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 150px;
+  margin-right: 100px;
 }
 
 .rightContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 150px;
+  margin-left: 100px;
 }
 
 h2 {
@@ -26,4 +26,5 @@ h2 {
 
 app-address-form {
   margin-top: 18px;
+  margin-bottom: auto;
 }

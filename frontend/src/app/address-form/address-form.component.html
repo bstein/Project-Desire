@@ -4,7 +4,7 @@
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName" (optionSelected)="nameChanged($event)">
       <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
         <img class="profile-img" aria-hidden [src]="user.pictureURL">
-        <span>{{user.name}}</span>
+        <span class="profile-name">{{user.name}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
@@ -17,20 +17,22 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field *ngIf="showAddressFields" floatLabel="never">
-    <input matInput placeholder="Address Line 1">
-  </mat-form-field>
-  <mat-form-field *ngIf="showAddressFields" floatLabel="never">
-    <input matInput placeholder="Address Line 2">
-  </mat-form-field>
-  <mat-form-field *ngIf="showAddressFields" floatLabel="never">
-    <input matInput placeholder="City">
-  </mat-form-field>
-  <mat-form-field *ngIf="showAddressFields" floatLabel="never">
-    <input matInput placeholder="State">
-  </mat-form-field>
-  <mat-form-field *ngIf="showAddressFields" floatLabel="never">
-    <input matInput placeholder="ZIP Code">
-  </mat-form-field>
+  <div class="manual-fields">
+    <mat-form-field *ngIf="showAddressFields" floatLabel="never">
+      <input matInput placeholder="Address Line 1">
+    </mat-form-field>
+    <mat-form-field *ngIf="showAddressFields" floatLabel="never">
+      <input matInput placeholder="Address Line 2">
+    </mat-form-field>
+    <mat-form-field class="city" *ngIf="showAddressFields" floatLabel="never">
+      <input matInput placeholder="City">
+    </mat-form-field>
+    <mat-form-field class="state" *ngIf="showAddressFields" floatLabel="never">
+      <input matInput placeholder="State">
+    </mat-form-field>
+    <mat-form-field *ngIf="showAddressFields" floatLabel="never">
+      <input matInput placeholder="ZIP Code">
+    </mat-form-field>
+  </div>
 
 </form>
