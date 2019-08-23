@@ -2,7 +2,7 @@ import { Component, OnInit, Input, } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatSelectChange } from '@angular/material';
 
 import { RedirectService, AuthService } from '../global.service';
 
@@ -20,6 +20,8 @@ export class AddressFormComponent implements OnInit {
   locations: Object[];
   disableLocationSelect = false;
   selectedLocation;
+
+  showAddressFields = false;
 
   constructor(private auth: AuthService, private redirect: RedirectService) {
     this.filteredUsers = this.nameCtrl.valueChanges
@@ -55,6 +57,7 @@ export class AddressFormComponent implements OnInit {
 
   private nameChanged(event: MatAutocompleteSelectedEvent) {
     // Clear existing post-name selections
+    this.showAddressFields = false;
     this.gotLocations = false;
     this.locations = [];
     this.selectedLocation = undefined;
@@ -101,10 +104,22 @@ export class AddressFormComponent implements OnInit {
   }
 
   private showLocations(disable) {
+    // TODO - it would probably be best to just not show the locations field if there aren't any saved
     this.locations.push({ addressName: '+ New Address' });
     this.selectedLocation = this.locations[0];
     this.disableLocationSelect = disable;
+    if (disable) { this.showAddressFields = true; }
     this.gotLocations = true;
+  }
+
+  private locationChanged(event: MatSelectChange) {
+    // TODO - Clear existing post-location selections
+
+    if (event.value['_id']) {
+      // TODO - Existing location was selected, show that address and disable changes
+    } else {
+      this.showAddressFields = true;
+    }
   }
 
 }
