@@ -99,19 +99,23 @@ export class AddressFormComponent implements OnInit {
           }
         }
 
-        this.showLocations(this.locations.length === 0);
+        this.showLocations();
       }).catch(err => {
         // TODO handle other / error
       });
     } else {
-      this.showLocations(true);
+      this.showLocations();
     }
   }
 
-  private showLocations(disable) {
+  private showLocations() {
+    // Add option of manual entry, set selected to be the default location OR the manual entry
     this.locations.push({ addressName: '+ New Address' });
     this.selectedLocation = this.locations[0];
 
+    // Disable location selection if there is only manual entry available
+    //  If there are saved options, update the form with the saved address (disable edits, too)
+    const disable = (this.locations.length === 1);
     this.disableLocationSelect = disable;
     this.disableAddressFields = !disable;
     if (!disable) {
@@ -122,28 +126,20 @@ export class AddressFormComponent implements OnInit {
   }
 
   private locationChanged(event: MatSelectChange) {
-    if (event.value['_id']) {
-      this.updateAddressFields(event.value);
-      this.disableAddressFields = true;
-    } else {
-      this.updateAddressFields({});
-      this.disableAddressFields = false;
-    }
+    // Pass saved address if selected, or pass empty if manual entry selected
+    //  Disable edits if a saved address was selected
+    this.updateAddressFields(event.value['_id'] ? event.value : {});
+    this.disableAddressFields = (event.value['_id'] !== undefined);
   }
 
   private updateAddressFields(adr) {
-    this.addressLine1 = adr['street1'];
-    if (adr['street2'] && adr['street2'].length > 0) {
-      console.log(`street2 = ${adr['street2']}`);
-      this.addressLine2 = adr['street2'];
-    } else {
-      // TODO - for some reason, this doesn't always update :(
-      console.log(`setting street2 to empty`);
-      this.addressLine2 = "";
-    }
-    this.city = adr['city'];
-    this.state = adr['state'];
-    this.zipCode = adr['zip'];
+    // Set the address form fields
+    //  The ternary operators ensure no value is 'undefined' in case of missing attribute from adr
+    this.addressLine1 = adr['street1'] ? adr['street1'] : '';
+    this.addressLine2 = adr['street2'] ? adr['street2'] : '';
+    this.city = adr['city'] ? adr['city'] : '';
+    this.state = adr['state'] ? adr['state'] : '';
+    this.zipCode = adr['zip'] ? adr['zip'] : '';
   }
 
 }

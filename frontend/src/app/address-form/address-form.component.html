@@ -19,19 +19,19 @@
 
   <div *ngIf="gotLocations" class="manual-fields">
     <mat-form-field floatLabel="never">
-      <input matInput placeholder="Address Line 1" value="{{ addressLine1 }}" [disabled]="disableAddressFields">
+      <input matInput placeholder="Address Line 1" name="addressLine1" [(ngModel)]="addressLine1" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field floatLabel="never">
-      <input matInput placeholder="Address Line 2" value="{{ addressLine2 }}" [disabled]="disableAddressFields">
+      <input matInput placeholder="Address Line 2" name="addressLine2" [(ngModel)]="addressLine2" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field class="city" floatLabel="never">
-      <input matInput placeholder="City" value="{{ city }}" [disabled]="disableAddressFields">
+      <input matInput placeholder="City" name="city" [(ngModel)]="city" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field class="state" floatLabel="never">
-      <input matInput placeholder="State" value="{{ state }}" [disabled]="disableAddressFields">
+      <input matInput placeholder="State" name="state" [(ngModel)]="state" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field floatLabel="never">
-      <input matInput placeholder="ZIP Code" value="{{ zipCode }}" [disabled]="disableAddressFields">
+      <input matInput placeholder="ZIP Code" name="zipCode" [(ngModel)]="zipCode" [disabled]="disableAddressFields">
     </mat-form-field>
   </div>
 
