@@ -16,10 +16,10 @@ export class AddressFormComponent implements OnInit {
   nameCtrl = new FormControl();
   filteredUsers: Observable<Object[]>;
 
-  gotAddresses = false;
-  addresses: Object[];
-  disableAddressSelect = false;
-  selectedAddress;
+  gotLocations = false;
+  locations: Object[];
+  disableLocationSelect = false;
+  selectedLocation;
 
   constructor(private auth: AuthService, private redirect: RedirectService) {
     this.filteredUsers = this.nameCtrl.valueChanges
@@ -55,9 +55,9 @@ export class AddressFormComponent implements OnInit {
 
   private nameChanged(event: MatAutocompleteSelectedEvent) {
     // Clear existing post-name selections
-    this.gotAddresses = false;
-    this.addresses = [];
-    this.selectedAddress = undefined;
+    this.gotLocations = false;
+    this.locations = [];
+    this.selectedLocation = undefined;
 
     if (event.option.value['_id']) {
       // Existing user was selected, get a list of their public addresses
@@ -68,25 +68,25 @@ export class AddressFormComponent implements OnInit {
         if (res.ok) { return res.json(); }
         throw new Error(res.status.toString());
       }).then((data) => {
-        this.addresses = data;
+        this.locations = data;
 
-        if (event.option.value['defaultAddress'] && this.addresses.length > 1) {
-          // Loop through addresses and find which to select as default
-          for (let i = 0; i < this.addresses.length; i++) {
-            if (this.addresses[i]['_id'] === event.option.value['defaultAddress']) {
+        if (event.option.value['defaultAddress'] && this.locations.length > 1) {
+          // Loop through locations and find which to select as default
+          for (let i = 0; i < this.locations.length; i++) {
+            if (this.locations[i]['_id'] === event.option.value['defaultAddress']) {
               // Copy the default address, append default indicator
-              const adr = this.addresses[i];
+              const adr = this.locations[i];
               adr['addressName'] += ' (default)';
 
               // Move the default address to the beginning of the list & select it
-              this.addresses.splice(i, 1);
-              this.addresses.unshift(adr);
+              this.locations.splice(i, 1);
+              this.locations.unshift(adr);
               break;
             }
           }
         }
 
-        this.showAddresses(this.addresses.length === 0);
+        this.showLocations(this.locations.length === 0);
       }).catch(status => {
         if (status === 401 || status === 403) {
           this.auth.loginUpdate(false);
@@ -95,15 +95,15 @@ export class AddressFormComponent implements OnInit {
         // TODO handle other status code / error
       });
     } else {
-      this.showAddresses(true);
+      this.showLocations(true);
     }
   }
 
-  private showAddresses(disable) {
-    this.addresses.push({ addressName: '+ New Address' });
-    this.selectedAddress = this.addresses[0];
-    this.disableAddressSelect = disable;
-    this.gotAddresses = true;
+  private showLocations(disable) {
+    this.locations.push({ addressName: '+ New Address' });
+    this.selectedLocation = this.locations[0];
+    this.disableLocationSelect = disable;
+    this.gotLocations = true;
   }
 
 }
