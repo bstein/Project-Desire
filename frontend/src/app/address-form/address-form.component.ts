@@ -50,13 +50,11 @@ export class AddressFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
     const matchingUserNames = this.users.filter(user => user['name'].toLowerCase().indexOf(filterValue) === 0);
 
-    // Allow the user to enter & select a name without a matching user
-    if (matchingUserNames.length === 0) {
-      matchingUserNames.push({
-        name: value,
-        pictureURL: 'assets/icons/baseline-add-24px.svg'
-      });
-    }
+    // Allow the user to enter & select a name that does not match an existing user
+    matchingUserNames.push({
+      name: value,
+      pictureURL: 'assets/icons/baseline-face-24px.svg'
+    });
 
     return matchingUserNames;
   }
