@@ -118,9 +118,7 @@ export class AddressFormComponent implements OnInit {
     const disable = (this.locations.length === 1);
     this.disableLocationSelect = disable;
     this.disableAddressFields = !disable;
-    if (!disable) {
-      this.updateAddressFields(this.selectedLocation);
-    }
+    this.updateAddressFields(this.selectedLocation);
 
     this.gotLocations = true;
   }
