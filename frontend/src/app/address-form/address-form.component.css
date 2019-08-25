@@ -32,6 +32,15 @@ table {
   margin-left: 20px;
 }
 
+.postal {
+  width: 110px;
+}
+
+.country {
+  width: 220px;
+  margin-left: 20px;
+}
+
 .manual-fields ::ng-deep .mat-form-field-infix {
   border-top: 0;
 }

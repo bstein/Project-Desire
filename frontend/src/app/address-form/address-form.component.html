@@ -10,7 +10,7 @@
   </mat-form-field>
 
   <mat-form-field *ngIf="gotLocations">
-    <mat-select placeholder="Location" [(value)]="selectedLocation" [disabled]="disableLocationSelect" (selectionChange)="locationChanged($event)">
+    <mat-select placeholder="Location" aria-label="Location" [(value)]="selectedLocation" [disabled]="disableLocationSelect" (selectionChange)="locationChanged($event)">
       <mat-option *ngFor="let address of locations" [value]="address">
         {{address.addressName}}
       </mat-option>
@@ -19,19 +19,27 @@
 
   <div *ngIf="gotLocations" class="manual-fields">
     <mat-form-field floatLabel="never">
-      <input matInput placeholder="Address Line 1" name="addressLine1" [(ngModel)]="addressLine1" [disabled]="disableAddressFields">
+      <input matInput placeholder="Address Line 1" aria-label="Address Line 1" name="addressLine1" [(ngModel)]="addressLine1" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field floatLabel="never">
-      <input matInput placeholder="Address Line 2" name="addressLine2" [(ngModel)]="addressLine2" [disabled]="disableAddressFields">
+      <input matInput placeholder="Address Line 2" aria-label="Address Line 2" name="addressLine2" [(ngModel)]="addressLine2" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field class="city" floatLabel="never">
-      <input matInput placeholder="City" name="city" [(ngModel)]="city" [disabled]="disableAddressFields">
+      <input matInput placeholder="City" aria-label="State" name="city" [(ngModel)]="city" [disabled]="disableAddressFields">
     </mat-form-field>
     <mat-form-field class="state" floatLabel="never">
-      <input matInput placeholder="State" name="state" [(ngModel)]="state" [disabled]="disableAddressFields">
+      <input matInput placeholder="State" aria-label="State" name="state" [(ngModel)]="state" [disabled]="disableAddressFields">
     </mat-form-field>
-    <mat-form-field floatLabel="never">
-      <input matInput placeholder="ZIP Code" name="zipCode" [(ngModel)]="zipCode" [disabled]="disableAddressFields">
+    <mat-form-field class="postal" floatLabel="never">
+      <input matInput placeholder="Postal Code" aria-label="Postal Code" name="postalCode" [(ngModel)]="postalCode" [disabled]="disableAddressFields">
+    </mat-form-field>
+    <mat-form-field class="country" floatLabel="never">
+      <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let country of filteredCountries | async" [value]="country" [disabled]="disableAddressFields">
+          {{country.name}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   </div>
 

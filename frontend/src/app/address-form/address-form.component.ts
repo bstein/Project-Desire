@@ -5,6 +5,7 @@ import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent, MatSelectChange } from '@angular/material';
 
 import { RedirectService, AuthService } from '../global.service';
+import { iso3166Countries } from  '../constants';
 
 @Component({
   selector: 'app-address-form',
@@ -27,7 +28,11 @@ export class AddressFormComponent implements OnInit {
   addressLine2 = '';
   city = '';
   state = '';
-  zipCode = '';
+  postalCode = '';
+
+  countries = iso3166Countries;
+  countryCtrl = new FormControl();
+  filteredCountries: Observable<Object[]>;
 
   constructor(private auth: AuthService, private redirect: RedirectService) {
     this.filteredUsers = this.nameCtrl.valueChanges
@@ -36,6 +41,13 @@ export class AddressFormComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this._filterUsers(name) : this.users.slice())
       );
+
+    this.filteredCountries = this.countryCtrl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filterCountries(name) : this.countries.slice())
+    );
   }
 
   ngOnInit() {
@@ -113,11 +125,15 @@ export class AddressFormComponent implements OnInit {
 
     // Disable location selection if there is only manual entry available
     //  If there are saved options, update the form with the saved address (disable edits, too)
-    const disable = (this.locations.length === 1);
-    this.disableLocationSelect = disable;
-    this.disableAddressFields = !disable;
-    this.updateAddressFields(this.selectedLocation);
+    if (this.locations.length === 1) {
+      this.disableLocationSelect = true;
+    } else {
+      this.disableAddressFields = true;
+      this.countryCtrl.reset();
+      this.countryCtrl.disable();
+    }
 
+    this.updateAddressFields(this.selectedLocation);
     this.gotLocations = true;
   }
 
@@ -125,7 +141,16 @@ export class AddressFormComponent implements OnInit {
     // Pass saved address if selected, or pass empty if manual entry selected
     //  Disable edits if a saved address was selected
     this.updateAddressFields(event.value['_id'] ? event.value : {});
-    this.disableAddressFields = (event.value['_id'] !== undefined);
+    if (event.value['_id'] !== undefined) {
+      this.disableAddressFields = true;
+      this.countryCtrl.reset();
+      this.countryCtrl.disable();
+    } else {
+      this.disableAddressFields = false;
+      this.countryCtrl.setValue({});
+      this.countryCtrl.reset();
+      this.countryCtrl.enable();
+    }
   }
 
   private updateAddressFields(adr) {
@@ -135,7 +160,33 @@ export class AddressFormComponent implements OnInit {
     this.addressLine2 = adr['street2'] ? adr['street2'] : '';
     this.city = adr['city'] ? adr['city'] : '';
     this.state = adr['state'] ? adr['state'] : '';
-    this.zipCode = adr['zip'] ? adr['zip'] : '';
+    this.postalCode = adr['zip'] ? adr['zip'] : '';
+    console.log(this.countries.find(c => c.iso3166 === adr['country']));
+
+    // TODO - there are 2+ issues here
+    //  #1 - setting value results in [object Object] being displayed, even though the HTML should get the name
+    //  #2 - resetting the form results in a null value and, if reset, [object Object] appears again
+
+    const countryObj = adr['country'] ? this.countries.find(c => c.iso3166 === adr['country']) : undefined;
+    if (countryObj !== undefined) {
+      console.log('setting value');
+      this.countryCtrl.setValue(countryObj);
+    } else {
+      console.log('form reset');
+      this.countryCtrl.reset();
+    }
   }
+
+  private _filterCountries(value: string): Object[] {
+    const filterValue = value.toLowerCase();
+    const matchingCountries = this.countries.filter(country => country['name'].toLowerCase().indexOf(filterValue) === 0);
+
+    return matchingCountries;
+  }
+
+    // When a country is selected, show its name
+    private displayCountry(country?: Object): string | undefined {
+      return country ? country['name'] : undefined;
+    }
 
 }
