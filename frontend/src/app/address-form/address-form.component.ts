@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -38,16 +38,17 @@ export class AddressFormComponent implements OnInit {
     this.filteredUsers = this.nameCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
+        map((value) => {
+          if (!value) {
+            return '';
+          } else if (typeof value === 'string') {
+            return value;
+          }
+
+          return value.name;
+        }),
         map(name => name ? this._filterUsers(name) : this.users.slice())
       );
-
-    this.filteredCountries = this.countryCtrl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => typeof value === 'string' ? value : value.name),
-      map(name => name ? this._filterCountries(name) : this.countries.slice())
-    );
   }
 
   ngOnInit() {
@@ -123,34 +124,24 @@ export class AddressFormComponent implements OnInit {
     this.locations.push({ addressName: '+ New Address' });
     this.selectedLocation = this.locations[0];
 
-    // Disable location selection if there is only manual entry available
-    //  If there are saved options, update the form with the saved address (disable edits, too)
-    if (this.locations.length === 1) {
-      this.disableLocationSelect = true;
-    } else {
-      this.disableAddressFields = true;
-      this.countryCtrl.reset();
-      this.countryCtrl.disable();
-    }
+    // Enable location select, disable address fields, and disable country field if there are saved addresses
+    //  Or, do the opposite if there are no saved addresses
+    const hasSavedAdrs = (this.locations.length > 1);
+    this.disableLocationSelect = !hasSavedAdrs;
+    this.disableAddressFields = hasSavedAdrs;
+    hasSavedAdrs ? this.countryCtrl.disable() : this.countryCtrl.enable();
 
     this.updateAddressFields(this.selectedLocation);
     this.gotLocations = true;
   }
 
   private locationChanged(event: MatSelectChange) {
-    // Pass saved address if selected, or pass empty if manual entry selected
-    //  Disable edits if a saved address was selected
-    this.updateAddressFields(event.value['_id'] ? event.value : {});
-    if (event.value['_id'] !== undefined) {
-      this.disableAddressFields = true;
-      this.countryCtrl.reset();
-      this.countryCtrl.disable();
-    } else {
-      this.disableAddressFields = false;
-      this.countryCtrl.setValue({});
-      this.countryCtrl.reset();
-      this.countryCtrl.enable();
-    }
+    // Update address fields & enable edits if saved address selected
+    //  Or, empty address fields & disable edits if manual entry selected
+    const savedAdrSelected = (event.value['_id'] !== undefined);
+    this.disableAddressFields = savedAdrSelected;
+    savedAdrSelected ? this.countryCtrl.disable() : this.countryCtrl.enable();
+    this.updateAddressFields(savedAdrSelected ? event.value : {});
   }
 
   private updateAddressFields(adr) {
@@ -161,20 +152,33 @@ export class AddressFormComponent implements OnInit {
     this.city = adr['city'] ? adr['city'] : '';
     this.state = adr['state'] ? adr['state'] : '';
     this.postalCode = adr['zip'] ? adr['zip'] : '';
-    console.log(this.countries.find(c => c.iso3166 === adr['country']));
 
-    // TODO - there are 2+ issues here
-    //  #1 - setting value results in [object Object] being displayed, even though the HTML should get the name
-    //  #2 - resetting the form results in a null value and, if reset, [object Object] appears again
+    // Call reset() on FormControl and update the filtered countries array with a fresh mapping
+    this.resetCountryField();
 
+    // If adr['country'] exists and it matches an ISO, set the corresponding country object
+    //  Or set it to undefined (to indicate no selection)
     const countryObj = adr['country'] ? this.countries.find(c => c.iso3166 === adr['country']) : undefined;
-    if (countryObj !== undefined) {
-      console.log('setting value');
-      this.countryCtrl.setValue(countryObj);
-    } else {
-      console.log('form reset');
-      this.countryCtrl.reset();
-    }
+    this.countryCtrl.setValue(countryObj);
+  }
+
+  private resetCountryField() {
+    this.countryCtrl.reset();
+
+    this.filteredCountries = this.countryCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map((value) => {
+          if (!value) {
+            return '';
+          } else if (typeof value === 'string') {
+            return value;
+          } else if (value.name) {
+            return value.name;
+          }
+        }),
+        map(name => name ? this._filterCountries(name) : this.countries.slice())
+      );
   }
 
   private _filterCountries(value: string): Object[] {
@@ -184,9 +188,9 @@ export class AddressFormComponent implements OnInit {
     return matchingCountries;
   }
 
-    // When a country is selected, show its name
-    private displayCountry(country?: Object): string | undefined {
-      return country ? country['name'] : undefined;
-    }
+  // When a country is selected, show its name
+  private displayCountry(country?: Object): string | undefined {
+    return country ? country['name'] : undefined;
+  }
 
 }

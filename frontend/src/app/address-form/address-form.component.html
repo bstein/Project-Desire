@@ -35,7 +35,7 @@
     </mat-form-field>
     <mat-form-field class="country" floatLabel="never">
       <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry">
         <mat-option *ngFor="let country of filteredCountries | async" [value]="country" [disabled]="disableAddressFields">
           {{country.name}}
         </mat-option>
