@@ -25,6 +25,7 @@
               "src/env.js"
             ],
             "styles": [
+              "src/desire-app-theme.scss",
               "src/styles.css"
             ],
             "scripts": []

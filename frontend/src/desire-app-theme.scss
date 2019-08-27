@@ -1,0 +1,108 @@
+@import '~@angular/material/theming';
+
+/* Import Open Sans web font */
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-weight: 300;
+  src: local('Open Sans Light'),
+       local('OpenSans-Light'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhpKKSTjw.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhv.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-weight: 400;
+  src: local('Open Sans Regular'),
+       local('OpenSans-Regular'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0d.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-weight: 600;
+  src: local('Open Sans SemiBold'),
+       local('OpenSans-SemiBold'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOUuhpKKSTjw.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOUuhv.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-weight: 700;
+  src: local('Open Sans Bold'),
+       local('OpenSans-Bold'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhv.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-weight: 800;
+  src: local('Open Sans ExtraBold'),
+       local('OpenSans-ExtraBold'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN8rsOUuhpKKSTjw.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN8rsOUuhv.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// Create a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans, sans-serif',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+// Include the common styles for Angular Material (this mixin should only be included ONCE)
+@include mat-core($custom-typography);
+
+// Define the palettes for this theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$desire-app-primary: mat-palette($mat-deep-purple);
+$desire-app-accent:  mat-palette($mat-green, A200, A100, A400);
+$desire-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes)
+$desire-app-theme-base: mat-light-theme($desire-app-primary, $desire-app-accent, $desire-app-warn);
+
+// Build custom off-black foreground with this map function
+@function desire-mat-light-theme-foreground($color-base, $color-disabled) {
+    // TODO - tweak dividers and/or secondary text color?
+  $desire-dark-dividers: rgba($color-base, 0.12);
+  $desire-dark-secondary-text: rgba($color-base, 0.54);
+
+  @return (
+      base:              $color-base,
+      divider:           $desire-dark-dividers,
+      dividers:          $desire-dark-dividers,
+      disabled:          $color-disabled,
+      disabled-button:   rgba($color-base, 0.26),
+      disabled-text:     $color-disabled,
+      elevation:         $color-base,
+      hint-text:         $color-disabled,
+      secondary-text:    $desire-dark-secondary-text,
+      icon:              $color-base,
+      icons:             $color-base,
+      text:              $color-base,
+      slider-min:        rgba($color-base, 0.38),
+      slider-off:        rgba($color-base, 0.26),
+      slider-off-active: rgba($color-base, 0.38),
+  );
+};
+
+$desire-app-foreground: desire-mat-light-theme-foreground(#22172D, rgba(#77757A, 0.75));
+
+// Merge the base theme with the foreground and background palettes
+$desire-app-theme: map-merge($desire-app-theme-base, (foreground: $desire-app-foreground));
+// TODO - also define background theme
+
+// Include theme styles for core and each component used in this app
+@include angular-material-theme($desire-app-theme);
