@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 72px;
+  margin-top: 84px;
 }
 
 .leftContainer {
@@ -20,6 +20,6 @@
 }
 
 app-address-form {
-  margin-top: 18px;
+  margin-top: 10px;
   margin-bottom: auto;
 }

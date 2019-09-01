@@ -1,60 +1,42 @@
 @import '~@angular/material/theming';
 
-/* Import Open Sans web font */
+/* Import Source Sans Pro web font */
 @font-face {
-  font-family: 'Open Sans';
-  font-display: swap;
-  font-weight: 300;
-  src: local('Open Sans Light'),
-       local('OpenSans-Light'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhpKKSTjw.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhv.woff) format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
   font-weight: 400;
-  src: local('Open Sans Regular'),
-       local('OpenSans-Regular'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0d.woff) format('woff');
+  font-display: swap;
+  src: local('Source Sans Pro Regular'),
+       local('SourceSansPro-Regular'),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7j.woff) format('woff');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Open Sans';
+  font-family: 'Source Sans Pro';
   font-display: swap;
   font-weight: 600;
-  src: local('Open Sans SemiBold'),
-       local('OpenSans-SemiBold'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOUuhpKKSTjw.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOUuhv.woff) format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: local('Source Sans Pro SemiBold'),
+       local('SourceSansPro-SemiBold'),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu3cOWxw.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdo.woff) format('woff');
+       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Open Sans';
-  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Bold'),
-       local('OpenSans-Bold'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhv.woff) format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Open Sans';
   font-display: swap;
-  font-weight: 800;
-  src: local('Open Sans ExtraBold'),
-       local('OpenSans-ExtraBold'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN8rsOUuhpKKSTjw.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN8rsOUuhv.woff) format('woff');
+  src: local('Source Sans Pro Bold'),
+       local('SourceSansPro-Bold'),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdo.woff) format('woff');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 // Create a custom typography config that overrides the font-family as well as material design levels
 $custom-typography: mat-typography-config(
-  $font-family: 'Open Sans, sans-serif',
+  $font-family: 'Source Sans Pro, sans-serif',
   $display-3: mat-typography-level(56px, 56px, 600),
   $display-1: mat-typography-level(28px, 28px, 600),
   $headline: mat-typography-level(56px, 70px, 600),
@@ -115,9 +97,23 @@ $desire-app-theme: map-merge($desire-app-theme-base, (foreground: $desire-app-fo
 @include angular-material-theme($desire-app-theme);
 
 // Custom CSS classes that incorporate desire-app-theme
-.textColorNormal {
+.text-color-normal {
   color: $text-color-normal;
 }
-.textColorDisabled {
+.text-color-disabled {
   color: $text-color-disabled;
+}
+
+// Custom CSS classes for modifying material component styles
+
+// Related to mat-form-field
+.custom-mff-zero-top-border .mat-form-field-infix {
+  border-top: 0;
+}
+.custom-mff-line-height .mat-input-element,
+.custom-mff-line-height .mat-select-value-text {
+  line-height: 22px;
+}
+.custom-mff-underline .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 1.3px;
 }

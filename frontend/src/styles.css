@@ -10,10 +10,9 @@ body {
 
 h1, h2, h3, h4, h5, h6, p, a {
   text-decoration: none;
-  letter-spacing: -0.01em;
 }
 
-.stdSideMargins {
-  margin-left: 72px;
-  margin-right: 72px;
+.std-side-margins {
+  margin-left: 84px;
+  margin-right: 84px;
 }
