@@ -8,11 +8,10 @@
 .no-shipments {
   display: flex;
   justify-content: center;
-  font-weight: 400;
-  font-size: 21px;
   user-select: none;
 }
 
 a {
   font-weight: 700;
+  color: inherit;
 }

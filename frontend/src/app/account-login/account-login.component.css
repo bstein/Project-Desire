@@ -4,19 +4,13 @@
   width: 450px;
 }
 
-.signin-title {
-  font-size: 56px;
-  font-weight: 600;
-  line-height: 1.25em;
+h1, p {
   user-select: none;
 }
 
 .signin-desc {
   margin-top: 48px;
   margin-bottom: 48px;
-  font-size: 20px;
-  line-height: 1.25em;
-  user-select: none;
 }
 
 #signin-google {

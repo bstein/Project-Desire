@@ -8,21 +8,21 @@ nav {
 }
 
 .nav-title {
+  margin: initial;
   padding-right: 24px;
+  color: inherit;
   align-self: center;
-  font-size: 56px;
 }
 
 .nav-links {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  font-size: 28px;
   padding: 0;
   margin-left: 0px;
   margin-right: 0px;
   margin-top: auto;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   list-style: none;
 }
 
@@ -40,14 +40,4 @@ nav {
 
 .linkRight {
   padding-right: 0px;
-}
-
-.inactiveLink {
-  color: #77757A;
-  opacity: 0.75;
-}
-
-.activeLink {
-  color: #22172D;
-  opacity: 1;
 }

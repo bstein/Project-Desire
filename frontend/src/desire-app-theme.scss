@@ -52,12 +52,15 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-// Create a custom typography config that overrides the font-family as well as the
-// `headlines` and `body-1` levels.
+// Create a custom typography config that overrides the font-family as well as material design levels
 $custom-typography: mat-typography-config(
   $font-family: 'Open Sans, sans-serif',
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 24px, 500)
+  $display-3: mat-typography-level(56px, 56px, 600),
+  $display-1: mat-typography-level(28px, 28px, 600),
+  $headline: mat-typography-level(56px, 70px, 600),
+  $title: mat-typography-level(42px, 42px, 600),
+  $subheading-1: mat-typography-level(20px, 24px, 400),
+  $body-1: mat-typography-level(18px, 18px, 400)
 );
 
 // Include the common styles for Angular Material (this mixin should only be included ONCE)
@@ -98,7 +101,11 @@ $desire-app-theme-base: mat-light-theme($desire-app-primary, $desire-app-accent,
   );
 };
 
-$desire-app-foreground: desire-mat-light-theme-foreground(#22172D, rgba(#77757A, 0.75));
+// DEBUG ONLY
+$text-color-normal: rgb(0, 0, 255); // #22172D
+$text-color-disabled: rgba(255, 0, 0, 0.75); // rgba(#77757A, 0.75)
+
+$desire-app-foreground: desire-mat-light-theme-foreground($text-color-normal, $text-color-disabled);
 
 // Merge the base theme with the foreground and background palettes
 $desire-app-theme: map-merge($desire-app-theme-base, (foreground: $desire-app-foreground));
@@ -106,3 +113,11 @@ $desire-app-theme: map-merge($desire-app-theme-base, (foreground: $desire-app-fo
 
 // Include theme styles for core and each component used in this app
 @include angular-material-theme($desire-app-theme);
+
+// Custom CSS classes that incorporate desire-app-theme
+.textColorNormal {
+  color: $text-color-normal;
+}
+.textColorDisabled {
+  color: $text-color-disabled;
+}

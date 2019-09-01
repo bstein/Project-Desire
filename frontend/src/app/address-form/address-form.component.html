@@ -1,10 +1,10 @@
-<form class="address-form">
+<form class="address-form mat-body-1">
   <mat-form-field>
     <input matInput placeholder="Name" aria-label="Name" [matAutocomplete]="auto" [formControl]="nameCtrl">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName" (optionSelected)="nameChanged($event)">
       <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
         <img class="profile-img" aria-hidden [src]="user.pictureURL">
-        <span class="profile-name">{{user.name}}</span>
+        <span class="profile-name mat-body-1">{{user.name}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
@@ -37,7 +37,7 @@
       <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry">
         <mat-option *ngFor="let country of filteredCountries | async" [value]="country" [disabled]="disableAddressFields">
-          {{country.name}}
+          <span class="mat-body-1">{{country.name}}</span>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

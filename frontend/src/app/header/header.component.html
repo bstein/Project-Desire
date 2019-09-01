@@ -1,15 +1,15 @@
 <nav class="stdSideMargins">
-  <a routerLink="/ship" i18n="@@ship" class="nav-title">
+  <a routerLink="/ship" i18n="@@ship" class="mat-display-3 nav-title">
     Project Desire
   </a>
-  <ul class="nav-links">
-    <li><a [ngClass]="{ 'link': true, 'linkLeft': true, 'inactiveLink': !shipActive, 'activeLink': shipActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/ship" i18n="@@ship">
+  <ul class="nav-links mat-display-1">
+    <li><a [ngClass]="{ 'link': true, 'linkLeft': true, 'textColorDisabled': !shipActive, 'textColorNormal': shipActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/ship" i18n="@@ship">
       Ship
     </a></li>
-    <li><a [ngClass]="{ 'link': true, 'inactiveLink': !historyActive, 'activeLink': historyActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/history" i18n="@@history">
+    <li><a [ngClass]="{ 'link': true, 'textColorDisabled': !historyActive, 'textColorNormal': historyActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/history" i18n="@@history">
       History
     </a></li>
-    <li><a [ngClass]="{ 'link': true, 'linkRight': true, 'inactiveLink': !accountActive, 'activeLink': accountActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/account" i18n="@@account">
+    <li><a [ngClass]="{ 'link': true, 'linkRight': true, 'textColorDisabled': !accountActive, 'textColorNormal': accountActive }" (mouseover)="hoverActivated($event)" (mouseout)="hoverDeactivated($event)" routerLink="/account" i18n="@@account">
       Account
     </a></li>
   </ul>
