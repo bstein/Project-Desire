@@ -1,14 +1,10 @@
-.address-form {
-  width: 350px;
-}
-
 mat-form-field {
   width: 100%;
   font-size: inherit;
 }
 
 table {
-  width: 350px;
+  width: 100%;
 }
 
 .profile-img {

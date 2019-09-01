@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-right: 100px;
+  width: 350px;
 }
 
 .rightContainer {
@@ -17,9 +18,11 @@
   flex-direction: column;
   justify-content: space-between;
   margin-left: 100px;
+  width: 350px;
 }
 
 app-address-form {
   margin-top: 10px;
   margin-bottom: auto;
+  width: 350px;
 }
