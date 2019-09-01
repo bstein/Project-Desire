@@ -101,9 +101,9 @@ $desire-app-theme-base: mat-light-theme($desire-app-primary, $desire-app-accent,
   );
 };
 
-// DEBUG ONLY
-$text-color-normal: rgb(0, 0, 255); // #22172D
-$text-color-disabled: rgba(255, 0, 0, 0.75); // rgba(#77757A, 0.75)
+// DEBUG values: rgb(0, 0, 255); rgba(255, 0, 0, 0.75);
+$text-color-normal: #22172D;
+$text-color-disabled: rgba(#77757A, 0.75);
 
 $desire-app-foreground: desire-mat-light-theme-foreground($text-color-normal, $text-color-disabled);
 

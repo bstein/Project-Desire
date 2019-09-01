@@ -43,3 +43,11 @@ table {
 .manual-fields ::ng-deep .mat-form-field-infix {
   border-top: 0;
 }
+
+::ng-deep .mat-form-field .mat-input-element {
+  line-height: 1.28em;
+}
+
+::ng-deep .mat-form-field .mat-select-value-text {
+  line-height: 1.28em;
+}
