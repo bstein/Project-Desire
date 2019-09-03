@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RedirectService, AuthService } from '../global.service';
+import { RedirectService, AuthService } from '../../global.service';
 
 @Component({
-  selector: 'app-ship',
-  templateUrl: './ship.component.html',
-  styleUrls: ['./ship.component.css']
+  selector: 'app-ship-address-collection',
+  templateUrl: './ship-address-collection.component.html',
+  styleUrls: ['./ship-address-collection.component.css']
 })
-export class ShipComponent implements OnInit {
+export class ShipAddressCollectionComponent implements OnInit {
 
   loggedIn = false;
   gotUsers = false;

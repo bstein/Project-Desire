@@ -10,7 +10,8 @@ import { MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatSelectMod
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ShipComponent } from './ship/ship.component';
+import { ShipAddressCollectionComponent } from './ship/ship-address-collection/ship-address-collection.component';
+import { ShipBaseComponent } from './ship/ship-base/ship-base.component';
 import { HistoryComponent } from './history/history.component';
 import { AccountComponent } from './account/account.component';
 import { AccountLoginComponent } from './account-login/account-login.component';
@@ -20,7 +21,8 @@ import { AddressFormComponent } from './address-form/address-form.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShipComponent,
+    ShipBaseComponent,
+    ShipAddressCollectionComponent,
     HistoryComponent,
     AccountComponent,
     AccountLoginComponent,
@@ -28,7 +30,6 @@ import { AddressFormComponent } from './address-form/address-form.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -36,7 +37,8 @@ import { AddressFormComponent } from './address-form/address-form.component';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
